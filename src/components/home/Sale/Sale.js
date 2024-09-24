@@ -1,32 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import card_bg1 from "../../../assets/images/cardBack.jpg";
-// import card_bg2 from "../../../assets/images/cardBack1.jpg";
-// import card_bg3 from "../../../assets/images/cardBack2.jpg";
+import { cardbg, cardbg2, cardbg3 } from "../../../assets/images";
 
 const Sale = () => {
   return (
     <div className="py-20 flex flex-col md:flex-row items-center justify-between gap-4 lg:gap-10">
-      <div
-        className="w-full md:w-2/3 lg:w-1/2 h-full"
-        // style={{ backgroundImage: `url(${card_bg1})` }}
+      <Link
+        className="relative h-[200px] md:h-[440px] w-full md:w-2/3 lg:w-1/2 p-[20px] text-[1.5rem] font-bold text-white before:bg-black before:bg-opacity-50 before:absolute before:top-0 before:right-0 before:left-0 before:bottom-0"
+        style={{ backgroundImage: `url(${cardbg})` }}
+        to="/shop"
       >
-        <Link to="/shop">Ежедневники</Link>
-      </div>
+        Ежедневники
+      </Link>
 
       <div className="w-full md:w-2/3 lg:w-1/2 h-auto flex flex-col gap-4 lg:gap-10">
-        <div
-          className="h-1/2 w-full"
-          // style={{ backgroundImage: `url(${card_bg2})` }}
+        <Link
+          className="relative h-[200px] w-full p-[20px] text-[1.5rem] font-bold text-white before:bg-black before:bg-opacity-50 before:absolute before:top-0 before:right-0 before:left-0 before:bottom-0"
+          style={{ backgroundImage: `url(${cardbg2})` }}
+          to="/shop"
         >
-          <Link to="/shop">Ручки и карандаши</Link>
-        </div>
-        <div
-          className="h-1/2 w-full"
-          // style={{ backgroundImage: `url(${card_bg3})` }}
+          Ручки и карандаши
+        </Link>
+        <Link
+          className="relative h-[200px] w-full p-[20px] text-[1.5rem] font-bold text-white before:bg-black before:bg-opacity-50 before:absolute before:top-0 before:right-0 before:left-0 before:bottom-0"
+          style={{ backgroundImage: `url(${cardbg3})` }}
+          to="/shop"
         >
-          <Link to="/shop">Тетради</Link>
-        </div>
+          Ручки и карандаши
+        </Link>
       </div>
     </div>
   );

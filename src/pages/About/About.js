@@ -1,28 +1,57 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
+import icon1 from "../../assets/images/delivery.png";
+import icon2 from "../../assets/images/assortment.png";
+import icon3 from "../../assets/images/consulting.png";
+import icon4 from "../../assets/images/wallet.png";
 
 const About = () => {
   const location = useLocation();
-  const [prevLocation, setPrevLocation] = useState("");
-  useEffect(() => {
-    setPrevLocation(location.state.data);
-  }, [location]);
+  // const [prevLocation, setPrevLocation] = useState("");
+  // useEffect(() => {
+  //   setPrevLocation(location.state.data);
+  // }, [location]);
   return (
-    <div className="max-w-container mx-auto px-4">
-      <Breadcrumbs title="About" prevLocation={prevLocation} />
-      <div className="pb-10">
-        <h1 className="max-w-[600px] text-base text-lightText mb-2">
-          <span className="text-primeColor font-semibold text-lg">Orebi</span>{" "}
-          is one of the world's leading ecommerce brands and is internationally
-          recognized for celebrating the essence of classic Worldwide cool
-          looking style.
-        </h1>
-        <Link to="/shop">
-          <button className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300">
-            Continue Shopping
-          </button>
-        </Link>
+    <div className="max-w-container mx-auto px-4 my-[100px]">
+      <div className="text-center py-10 px-4">
+        <h1 className="text-4xl mb-[50px] font-sans">О нас</h1>
+        <div className="flex flex-wrap justify-around gap-4 md:gap-10 lg:gap-20">
+          <div className="text-center p-5 flex-1 min-w-[200px]">
+            <img src={icon1} alt="Icon 1" className="w-16 h-16 mb-3 mx-auto" />
+            <h2 className="text-lg mb-2 font-sans">
+              Быстрая доставка вашего заказа
+            </h2>
+            <p className="text-gray-500 font-sans">
+              У нас имеется так и доставка по городу, так и по всей территории
+              Узбекистана
+            </p>
+          </div>
+          <div className="text-center p-5 flex-1 min-w-[200px]">
+            <img src={icon2} alt="Icon 2" className="w-16 h-16 mb-3 mx-auto" />
+            <h2 className="text-lg mb-2 font-sans">
+              Разнообразие канцелярских товаров
+            </h2>
+            <p className="text-gray-500 font-sans">
+              Мы предлагаем широкий ассортимент качественной премиальной
+              канцелярии собственного производства
+            </p>
+          </div>
+          <div className="text-center p-5 flex-1 min-w-[200px]">
+            <img src={icon3} alt="Icon 3" className="w-16 h-16 mb-3 mx-auto" />
+            <h2 className="text-lg mb-2 font-sans">Онлайн консультации</h2>
+            <p className="text-gray-500 font-sans">
+              Наши эксперты готовы предоставить Вам персональную помощь и
+              консультации онлайн
+            </p>
+          </div>
+          <div className="text-center p-5 flex-1 min-w-[200px]">
+            <img src={icon4} alt="Icon 4" className="w-16 h-16 mb-3 mx-auto" />
+            <h2 className="text-lg mb-2 font-sans">Удобные платежи</h2>
+            <p className="text-gray-500 font-sans">
+              Оплачивайте свои покупки удобным образом
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

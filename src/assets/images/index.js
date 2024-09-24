@@ -1,4 +1,4 @@
-import logo from "./orebiLogo.png";
+import logo from "./logo.png";
 import logoLight from "./logoLight.png";
 import bannerImgOne from "./banner/bannerImgOne.webp";
 import bannerImgTwo from "./banner/bannerImgTwo.webp";
@@ -7,6 +7,11 @@ import saleImgOne from "./sale/saleImgOne.webp";
 import saleImgTwo from "./sale/saleImgTwo.webp";
 import saleImgThree from "./sale/saleImgThree.webp";
 // ============== Products Start here ====================
+import cardbg from "./cardBack.jpg";
+// import cardbg1 from "./cardBack1.jpg";
+import cardbg2 from "./cardBack2.jpg";
+import cardbg3 from "./cardBack3.jpg";
+
 // New Arrivals
 import newArrOne from "./products/newArrival/newArrOne.webp";
 import newArrTwo from "./products/newArrival/newArrTwo.webp";
@@ -41,6 +46,10 @@ export {
   saleImgTwo,
   saleImgThree,
   // ===================== Products start here ============
+  cardbg,
+  // cardbg1,
+  cardbg2,
+  cardbg3,
   // New Arrivals
   newArrOne,
   newArrTwo,

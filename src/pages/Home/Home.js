@@ -14,7 +14,7 @@ const Home = () => {
         <Sale />
         <NewArrivals />
         <BestSellers />
-        <SpecialOffers />
+        {/* <SpecialOffers /> */}
       </div>
     </div>
   );
