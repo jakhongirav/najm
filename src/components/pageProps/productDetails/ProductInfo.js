@@ -29,10 +29,10 @@ const ProductInfo = ({ productInfo }) => {
         }
         className="w-full py-4 bg-primeColor hover:bg-black duration-300 text-white text-lg font-titleFont"
       >
-        Add to Cart
+        Добавить в корзину
       </button>
       <p className="font-normal text-sm">
-        <span className="text-base font-medium"> Categories:</span> Spring
+        <span className="text-base font-medium"> Категории:</span> Spring
         collection, Streetwear, Women Tags: featured SKU: N/A
       </p>
     </div>
