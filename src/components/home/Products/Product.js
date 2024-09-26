@@ -4,9 +4,10 @@ import { FaShoppingCart } from "react-icons/fa";
 import { MdOutlineLabelImportant } from "react-icons/md";
 import Image from "../../designLayouts/Image";
 import Badge from "./Badge";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/orebiSlice";
+import { buttonVariants } from "../../ui/button";
 
 const Product = (props) => {
   const dispatch = useDispatch();
@@ -85,8 +86,13 @@ const Product = (props) => {
           </h2>
           <p className="text-[#767676] text-[14px]">${props.price}</p>
         </div>
-        <div>
-          <p className="text-[#767676] text-[14px]">{props.color}</p>
+        <div className="w-full">
+          <button
+            onClick={handleProductDetails}
+            className={`${buttonVariants({ variant: "outline", size: "default" })} text-primeColor rounded-none w-full`}
+          >
+            Перейти
+          </button>
         </div>
       </div>
     </div>
