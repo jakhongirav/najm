@@ -20,6 +20,8 @@ const initialState = {
   products: [],
   categories: [],
   newArrivals: [],
+  saved: [],
+  liked: [],
 };
 
 export const orebiSlice = createSlice({
@@ -39,27 +41,29 @@ export const orebiSlice = createSlice({
       state.products = products;
     },
     addToCart: (state, action) => {
-      const item = state.products.find(
-        (item) => item._id === action.payload._id
+      const itemInSaved = state.saved.find(
+        (savedItem) => savedItem._id === action.payload._id
       );
-      if (item) {
-        item.quantity += action.payload.quantity;
+
+      if (itemInSaved) {
+        itemInSaved.quantity += action.payload.quantity;
       } else {
-        state.products.push(action.payload);
+        // Adding a new item to the saved array, including quantity
+        state.saved.push({
+          ...action.payload,
+          quantity: action.payload.quantity,
+        });
       }
     },
+
     increaseQuantity: (state, action) => {
-      const item = state.products.find(
-        (item) => item._id === action.payload._id
-      );
+      const item = state.saved.find((item) => item._id === action.payload._id);
       if (item) {
         item.quantity++;
       }
     },
     drecreaseQuantity: (state, action) => {
-      const item = state.products.find(
-        (item) => item._id === action.payload._id
-      );
+      const item = state.saved.find((item) => item._id === action.payload._id);
       if (item.quantity === 1) {
         item.quantity = 1;
       } else {
@@ -67,12 +71,10 @@ export const orebiSlice = createSlice({
       }
     },
     deleteItem: (state, action) => {
-      state.products = state.products.filter(
-        (item) => item._id !== action.payload
-      );
+      state.saved = state.saved.filter((item) => item._id !== action.payload);
     },
     resetCart: (state) => {
-      state.products = [];
+      state.saved = [];
     },
   },
 });
@@ -92,7 +94,7 @@ export function getAllProducts() {
   return async function (dispatch) {
     try {
       await axios
-        .get("http://38.242.226.165/products/all-products/")
+        .get("https://najm.pythonanywhere.com/products/all-products/")
         .then((res) => {
           dispatch(
             orebiSlice.actions.getAllProductsSuccess([

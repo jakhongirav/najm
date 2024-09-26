@@ -9,17 +9,17 @@ import ItemCard from "./ItemCard";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.orebiReducer.products);
+  const saved = useSelector((state) => state.orebiReducer.saved);
   const [totalAmt, setTotalAmt] = useState("");
   const [shippingCharge, setShippingCharge] = useState("");
   useEffect(() => {
     let price = 0;
-    products.map((item) => {
+    saved.map((item) => {
       price += item.price * item.quantity;
       return price;
     });
     setTotalAmt(price);
-  }, [products]);
+  }, [saved]);
   useEffect(() => {
     if (totalAmt <= 200) {
       setShippingCharge(30);
@@ -32,7 +32,7 @@ const Cart = () => {
   return (
     <div className="max-w-container mx-auto px-4">
       <Breadcrumbs title="Корзина" />
-      {products.length > 0 ? (
+      {saved.length > 0 ? (
         <div className="pb-20">
           <div className="w-full h-20 bg-[#F5F7F7] text-primeColor hidden lgl:grid grid-cols-5 place-content-center px-6 text-lg font-titleFont font-semibold">
             <h2 className="col-span-2">Продукт</h2>
@@ -41,7 +41,7 @@ const Cart = () => {
             <h2>Итоговая цена</h2>
           </div>
           <div className="mt-5">
-            {products.map((item) => (
+            {saved.map((item) => (
               <div key={item._id}>
                 <ItemCard item={item} />
               </div>
