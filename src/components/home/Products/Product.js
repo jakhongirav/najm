@@ -1,24 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdOutlineLabelImportant } from "react-icons/md";
 import Image from "../../designLayouts/Image";
 import Badge from "./Badge";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/orebiSlice";
 import { buttonVariants } from "../../ui/button";
+import axios from "axios";
 
 const Product = (props) => {
+  // let [products, setProducts] = useEffect("");
+
+  // useEffect(() => {
+  //   try {
+  //     axios.get("http://38.242.226.165/products/all-products/").then((res) => {
+  //       setProducts(res.json());
+  //       console.log(res);
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // });
+
   const dispatch = useDispatch();
   const _id = props.productName;
   const idString = (_id) => {
     return String(_id).toLowerCase().split(" ").join("");
   };
   const rootId = idString(_id);
-
-  console.log(props);
-
   const navigate = useNavigate();
   const productItem = props;
   const handleProductDetails = () => {
@@ -52,7 +63,6 @@ const Product = (props) => {
                     colors: props.color,
                   })
                 );
-                console.log("success");
               }}
               className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
             >

@@ -94,7 +94,7 @@ export function getAllProducts() {
   return async function (dispatch) {
     try {
       await axios
-        .get("https://najm.pythonanywhere.com/products/all-products/")
+        .get("http://38.242.226.165/products/all-products/")
         .then((res) => {
           dispatch(
             orebiSlice.actions.getAllProductsSuccess([

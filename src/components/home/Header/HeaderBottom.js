@@ -75,7 +75,10 @@ const HeaderBottom = () => {
               >
                 {categories.map((category) => {
                   return (
-                    <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400  hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                    <li
+                      key={category.id}
+                      className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400  hover:border-b-white hover:text-white duration-300 cursor-pointer"
+                    >
                       <Link
                         key={category.id}
                         to={`/shop?category=${category.id}`}
