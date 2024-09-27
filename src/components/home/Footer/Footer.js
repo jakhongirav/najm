@@ -4,8 +4,8 @@ import FooterListTitle from "./FooterListTitle";
 const Footer = () => {
   return (
     <div className="w-full bg-[#F5F5F3] py-20">
-      <div className="container w-full mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 px-4 justify-items-center">
-        <div className="col-span-1">
+      <div className="container flex flex-wrap sml:flex-nowrap gap-8 w-full md:mx-auto md:grid md:grid-cols-2 xl:grid-cols-3 px-4 md:justify-items-center">
+        <div className="md:col-span-1">
           <FooterListTitle title="Больше о нас" />
           <div className="flex flex-col gap-6">
             <ul className="flex items-center gap-2">
@@ -30,7 +30,7 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="col-span-1">
+        <div className="md:col-span-1">
           <FooterListTitle title="Магазин" />
           <ul className="flex flex-col gap-2">
             <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
@@ -44,7 +44,7 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="col-span-1">
+        <div className="md:col-span-1">
           <FooterListTitle title="Аккаунт" />
           <ul className="flex flex-col gap-2">
             <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
