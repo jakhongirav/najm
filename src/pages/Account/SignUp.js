@@ -6,12 +6,13 @@ import { logo } from "../../assets/images";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { defaultSignUp, signUpSchema } from "../../lib/validations";
+import { toast } from "sonner";
 
 // Submit data
 const submitData = async (data) => {
   try {
     await axios
-      .post("https://http://38.242.226.165/users/register/", data)
+      .post("http://38.242.226.165/users/register/", data)
       .then((res) => console.log(res.json()));
   } catch (err) {
     console.log(err);
@@ -21,7 +22,7 @@ const submitData = async (data) => {
 const VerifyData = async (data) => {
   try {
     await axios
-      .post("https://http://38.242.226.165/users/register/", data)
+      .post("https://http://38.242.226.165/users/verify/", data)
       .then((res) => console.log(res.json()));
   } catch (err) {
     console.log(err);
@@ -33,7 +34,7 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitSuccessful },
   } = useForm({
     resolver: zodResolver(signUpSchema),
     defaultValues: defaultSignUp,
@@ -201,6 +202,25 @@ const SignUp = () => {
                   )}
                 </div>
                 <button
+                  onClick={() =>
+                    isSubmitSuccessful
+                      ? toast("Вам отправлен код", {
+                          description:
+                            "Вам отправлен код подтверждения, введите код пароль",
+                          action: {
+                            label: "Undo",
+                            onClick: () => console.log("Undo"),
+                          },
+                        })
+                      : toast("чтото пошло не так, повторите попытку", {
+                          description:
+                            "Вам отправлен код подтверждения, введите код пароль",
+                          action: {
+                            label: "Undo",
+                            onClick: () => console.log("Undo"),
+                          },
+                        })
+                  }
                   type="submit"
                   className={`bg-primeColor hover:bg-black cursor-pointer w-full text-gray-200 text-base font-medium h-10 rounded-md hover:text-white duration-300`}
                 >

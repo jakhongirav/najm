@@ -22,6 +22,7 @@ import Offer from "./pages/Offer/Offer";
 import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
+import { Toaster } from "./components/ui/notification";
 
 const Layout = () => {
   return (
@@ -62,6 +63,7 @@ function App() {
   return (
     <div className="font-bodyFont">
       <RouterProvider router={router} />
+      <Toaster />
     </div>
   );
 }

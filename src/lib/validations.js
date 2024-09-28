@@ -15,7 +15,7 @@ export const signUpSchema = z
   })
   .transform((data) => ({
     ...data,
-    phone_number: `+998${data.phone_number}`, // Automatically append +998 to the user's phone input
+    phone_number: `${data.phone_number}`,
   }));
 
 export const defaultSignUp = {
