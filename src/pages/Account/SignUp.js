@@ -11,7 +11,17 @@ import { defaultSignUp, signUpSchema } from "../../lib/validations";
 const submitData = async (data) => {
   try {
     await axios
-      .post("https://najm.pythonanywhere.com/users/register/", data)
+      .post("https://http://38.242.226.165/users/register/", data)
+      .then((res) => console.log(res.json()));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const VerifyData = async (data) => {
+  try {
+    await axios
+      .post("https://http://38.242.226.165/users/register/", data)
       .then((res) => console.log(res.json()));
   } catch (err) {
     console.log(err);
