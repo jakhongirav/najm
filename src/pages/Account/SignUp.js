@@ -1,44 +1,94 @@
 import React, { useState } from "react";
 // import { BsCheckCircleFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { Link } from "react-router-dom";
 import { logo } from "../../assets/images";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { defaultSignUp, signUpSchema } from "../../lib/validations";
 import { toast } from "sonner";
-
-// Submit data
-const submitData = async (data) => {
-  try {
-    await axios
-      .post("http://38.242.226.165/users/register/", data)
-      .then((res) => console.log(res.json()));
-  } catch (err) {
-    console.log(err);
-  }
-};
-
-const VerifyData = async (data) => {
-  try {
-    await axios
-      .post("https://http://38.242.226.165/users/verify/", data)
-      .then((res) => console.log(res.json()));
-  } catch (err) {
-    console.log(err);
-  }
-};
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "../../components/ui/inputOTP";
+import { Button } from "../../components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../../components/ui/form";
 
 const SignUp = () => {
+  const [submitSuccessful, setSubmitSuccessful] = useState(false);
   const [successMsg, setSuccessMsg] = useState(false);
+  // Submit data
+  const submitData = async (data) => {
+    try {
+      await axios
+        .post("http://38.242.226.165/users/register/", data)
+        .then((res) => console.log(res))
+        .then(() => {
+          setSubmitSuccessful(true);
+          console.log(submitSuccessful);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors, isSubmitSuccessful },
   } = useForm({
     resolver: zodResolver(signUpSchema),
     defaultValues: defaultSignUp,
   });
+
+  const FormSchema = z.object({
+    pin: z.string().min(4, {
+      message: "Your one-time password must be 4 characters.",
+    }),
+  });
+
+  const form = useForm({
+    resolver: zodResolver(FormSchema),
+    defaultValues: {
+      pin: "",
+    },
+  });
+
+  async function onSubmit(data) {
+    const newData = {
+      ...data,
+      phone_number: getValues("phone_number"),
+    };
+    try {
+      await axios
+        .post("http://38.242.226.165/users/verify/", newData)
+        .then((res) => {
+          console.log(res);
+          toast({
+            title: "Аккаунт создан",
+            description: (
+              <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+                <code className="text-white">
+                  {JSON.stringify(data, null, 2)}
+                </code>
+              </pre>
+            ),
+          });
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <div className="w-full h-screen flex items-center justify-start">
@@ -64,6 +114,39 @@ const SignUp = () => {
               </button>
             </Link>
           </div>
+        ) : submitSuccessful ? (
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="w-2/3 space-y-6"
+            >
+              <FormField
+                control={form.control}
+                name="pin"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Введите смс код</FormLabel>
+                    <FormControl>
+                      <InputOTP maxLength={4} {...field}>
+                        <InputOTPGroup>
+                          <InputOTPSlot index={0} />
+                          <InputOTPSlot index={1} />
+                          <InputOTPSlot index={2} />
+                          <InputOTPSlot index={3} />
+                        </InputOTPGroup>
+                      </InputOTP>
+                    </FormControl>
+                    <FormDescription>
+                      Please enter the one-time password sent to your phone.
+                    </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <Button type="submit">Submit</Button>
+            </form>
+          </Form>
         ) : (
           <form
             onSubmit={handleSubmit(submitData)}
@@ -96,25 +179,6 @@ const SignUp = () => {
                     </p>
                   )}
                 </div>
-                {/* Email */}
-                {/* <div className="flex flex-col gap-.5">
-                  <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Work Email
-                  </p>
-                  <input
-                    onChange={handleEmail}
-                    value={email}
-                    className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="email"
-                    placeholder="malohat@workemail.com"
-                  />
-                  {errEmail && (
-                    <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
-                      <span className="font-bold italic mr-1">!</span>
-                      {errEmail}
-                    </p>
-                  )}
-                </div> */}
                 {/* First name */}
                 <div className="flex flex-col gap-.5">
                   <p className="font-titleFont text-base font-semibold text-gray-600">
