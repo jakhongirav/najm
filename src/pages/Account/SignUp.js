@@ -66,8 +66,8 @@ const SignUp = () => {
 
   async function onSubmit(data) {
     const newData = {
-      ...data,
       phone_number: getValues("phone_number"),
+      ...data,
     };
     try {
       await axios
