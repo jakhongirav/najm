@@ -52,7 +52,7 @@ const SignUp = () => {
   });
 
   const FormSchema = z.object({
-    pin: z.string().min(4, {
+    verification_code: z.string().min(4, {
       message: "Your one-time password must be 4 characters.",
     }),
   });
@@ -60,7 +60,7 @@ const SignUp = () => {
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      pin: "",
+      verification_code: "",
     },
   });
 
@@ -79,7 +79,7 @@ const SignUp = () => {
             description: (
               <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
                 <code className="text-white">
-                  {JSON.stringify(data, null, 2)}
+                  {JSON.stringify(newData, null, 2)}
                 </code>
               </pre>
             ),
@@ -87,6 +87,16 @@ const SignUp = () => {
         });
     } catch (err) {
       console.log(err);
+      toast({
+        title: "Неверный код подтверждения",
+        description: (
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">
+              {JSON.stringify(newData, null, 2)}
+            </code>
+          </pre>
+        ),
+      });
     }
   }
 
@@ -122,10 +132,11 @@ const SignUp = () => {
             >
               <FormField
                 control={form.control}
-                name="pin"
+                name="verification_code"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Введите смс код</FormLabel>
+                    <FormLabel>Введите смс код</FormLabel>{" "}
+                    {/* Ensure consistent language */}
                     <FormControl>
                       <InputOTP maxLength={4} {...field}>
                         <InputOTPGroup>
@@ -137,14 +148,15 @@ const SignUp = () => {
                       </InputOTP>
                     </FormControl>
                     <FormDescription>
-                      Please enter the one-time password sent to your phone.
+                      Введите одноразовый пароль, отправленный на ваш телефон.{" "}
+                      {/* Change to match language */}
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-
-              <Button type="submit">Submit</Button>
+              <Button type="submit">Отправить</Button>{" "}
+              {/* Consistent language */}
             </form>
           </Form>
         ) : (
