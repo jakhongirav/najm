@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { BsCheckCircleFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Link } from "react-router-dom";
@@ -27,33 +26,47 @@ import {
 const SignUp = () => {
   const [submitSuccessful, setSubmitSuccessful] = useState(false);
   const [successMsg, setSuccessMsg] = useState(false);
+
   // Submit data
   const submitData = async (data) => {
     try {
-      await axios
-        .post("http://38.242.226.165/users/register/", data)
-        .then((res) => console.log(res))
-        .then(() => {
-          setSubmitSuccessful(true);
-          console.log(submitSuccessful);
-        });
+      const response = await axios.post(
+        "http://38.242.226.165/users/register/",
+        data
+      );
+      console.log(response);
+      setSubmitSuccessful(true);
+      setSuccessMsg(true);
+      // Trigger success toast
+      toast({
+        title: "Код отправлен",
+        description: "На ваш номер был отправлен код подтверждения.",
+      });
     } catch (err) {
       console.log(err);
+      // Trigger error toast
+      toast({
+        title: "Ошибка регистрации",
+        description:
+          "Произошла ошибка при создании аккаунта. Попробуйте снова.",
+        status: "error",
+      });
     }
   };
+
   const {
     register,
     handleSubmit,
     getValues,
-    formState: { errors, isSubmitSuccessful },
+    formState: { errors },
   } = useForm({
     resolver: zodResolver(signUpSchema),
     defaultValues: defaultSignUp,
   });
 
   const FormSchema = z.object({
-    verification_code: z.string().min(4, {
-      message: "Your one-time password must be 4 characters.",
+    verification_code: z.string().length(4, {
+      message: "Код должен состоять из 4 цифр.",
     }),
   });
 
@@ -70,32 +83,23 @@ const SignUp = () => {
       ...data,
     };
     try {
-      await axios
-        .post("http://38.242.226.165/users/verify/", newData)
-        .then((res) => {
-          console.log(res);
-          toast({
-            title: "Аккаунт создан",
-            description: (
-              <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                <code className="text-white">
-                  {JSON.stringify(newData, null, 2)}
-                </code>
-              </pre>
-            ),
-          });
-        });
+      const res = await axios.post(
+        "http://38.242.226.165/users/verify/",
+        newData
+      );
+      console.log(res);
+      // Trigger success toast
+      toast({
+        title: "Аккаунт создан",
+        description: "Ваш аккаунт успешно создан.",
+      });
     } catch (err) {
       console.log(err);
+      // Trigger error toast
       toast({
         title: "Неверный код подтверждения",
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">
-              {JSON.stringify(newData, null, 2)}
-            </code>
-          </pre>
-        ),
+        description: "Пожалуйста, проверьте код и попробуйте снова.",
+        status: "error",
       });
     }
   }
@@ -116,10 +120,7 @@ const SignUp = () => {
               {successMsg}
             </p>
             <Link to="/signin">
-              <button
-                className="w-full h-10 bg-primeColor rounded-md text-gray-200 text-base font-titleFont font-semibold 
-            tracking-wide hover:bg-black hover:text-white duration-300"
-              >
+              <button className="w-full h-10 bg-primeColor rounded-md text-gray-200 text-base font-titleFont font-semibold tracking-wide hover:bg-black hover:text-white duration-300">
                 Войти
               </button>
             </Link>
@@ -135,8 +136,7 @@ const SignUp = () => {
                 name="verification_code"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Введите смс код</FormLabel>{" "}
-                    {/* Ensure consistent language */}
+                    <FormLabel>Введите смс код</FormLabel>
                     <FormControl>
                       <InputOTP maxLength={4} {...field}>
                         <InputOTPGroup>
@@ -148,15 +148,13 @@ const SignUp = () => {
                       </InputOTP>
                     </FormControl>
                     <FormDescription>
-                      Введите одноразовый пароль, отправленный на ваш телефон.{" "}
-                      {/* Change to match language */}
+                      Введите одноразовый пароль, отправленный на ваш телефон.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit">Отправить</Button>{" "}
-              {/* Consistent language */}
+              <Button type="submit">Отправить</Button>
             </form>
           </Form>
         ) : (
@@ -170,15 +168,18 @@ const SignUp = () => {
               </h1>
               <div className="flex flex-col gap-3">
                 {/* User name */}
-                <div className="flex flex-col gap-.5">
+                <div className="flex flex-col gap-0.5">
                   <p className="font-titleFont text-base font-semibold text-gray-600">
                     Никнейм
                   </p>
                   <input
                     {...register("username", {
-                      required: true,
-                      maxLength: 20,
-                      minLength: 6,
+                      required: "Введите никнейм.",
+                      maxLength: {
+                        value: 20,
+                        message: "Максимум 20 символов.",
+                      },
+                      minLength: { value: 6, message: "Минимум 6 символов." },
                     })}
                     className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
                     type="text"
@@ -191,20 +192,22 @@ const SignUp = () => {
                     </p>
                   )}
                 </div>
-                {/* First name */}
-                <div className="flex flex-col gap-.5">
+                <div className="flex flex-col gap-0.5">
                   <p className="font-titleFont text-base font-semibold text-gray-600">
                     Имя
                   </p>
                   <input
                     {...register("first_name", {
-                      required: true,
-                      maxLength: 20,
-                      minLength: 2,
+                      required: "Введите имя.",
+                      maxLength: {
+                        value: 20,
+                        message: "Максимум 20 символов.",
+                      },
+                      minLength: { value: 2, message: "Минимум 2 символов." },
                     })}
                     className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="Имя"
-                    placeholder="Аня"
+                    type="text"
+                    placeholder="eg. Malohat"
                   />
                   {errors.first_name && (
                     <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
@@ -213,20 +216,22 @@ const SignUp = () => {
                     </p>
                   )}
                 </div>
-                {/* Last name */}
-                <div className="flex flex-col gap-.5">
+                <div className="flex flex-col gap-0.5">
                   <p className="font-titleFont text-base font-semibold text-gray-600">
-                    Фамилия
+                    фамилия
                   </p>
                   <input
                     {...register("last_name", {
-                      required: true,
-                      maxLength: 20,
-                      minLength: 1,
+                      required: "Введите фамилию.",
+                      maxLength: {
+                        value: 20,
+                        message: "Максимум 20 символов.",
+                      },
+                      minLength: { value: 6, message: "Минимум 6 символов." },
                     })}
                     className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="Фамилия"
-                    placeholder="Пирова"
+                    type="text"
+                    placeholder="eg. Rozmetova"
                   />
                   {errors.last_name && (
                     <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
@@ -235,19 +240,22 @@ const SignUp = () => {
                     </p>
                   )}
                 </div>
-                {/* Phone Number */}
-                <div className="flex flex-col">
+                <div className="flex flex-col gap-0.5">
                   <p className="font-titleFont text-base font-semibold text-gray-600">
                     Номер телефона
                   </p>
                   <input
                     {...register("phone_number", {
-                      required: true,
-                      maxLength: 20,
+                      required: "Введите номер телефона.",
+                      maxLength: {
+                        value: 9,
+                        message: "Максимум 9 символов.",
+                      },
+                      minLength: { value: 9, message: "Минимум 9 символов." },
                     })}
                     className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
                     type="text"
-                    placeholder="99 111 11 11 "
+                    placeholder="eg. 90 111 1212"
                   />
                   {errors.phone_number && (
                     <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
@@ -256,19 +264,22 @@ const SignUp = () => {
                     </p>
                   )}
                 </div>
-                {/* Password */}
-                <div className="flex flex-col gap-.5">
+                <div className="flex flex-col gap-0.5">
                   <p className="font-titleFont text-base font-semibold text-gray-600">
                     Пароль
                   </p>
                   <input
                     {...register("password", {
-                      required: true,
-                      maxLength: 20,
+                      required: "Создайте пароль.",
+                      maxLength: {
+                        value: 20,
+                        message: "Максимум 20 символов.",
+                      },
+                      minLength: { value: 6, message: "Минимум 6 символов." },
                     })}
                     className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
-                    type="password"
-                    placeholder="Создайте пароль"
+                    type="text"
+                    placeholder="eg. *****"
                   />
                   {errors.password && (
                     <p className="text-sm text-red-500 font-titleFont font-semibold px-4">
@@ -278,27 +289,8 @@ const SignUp = () => {
                   )}
                 </div>
                 <button
-                  onClick={() =>
-                    isSubmitSuccessful
-                      ? toast("Вам отправлен код", {
-                          description:
-                            "Вам отправлен код подтверждения, введите код пароль",
-                          action: {
-                            label: "Undo",
-                            onClick: () => console.log("Undo"),
-                          },
-                        })
-                      : toast("чтото пошло не так, повторите попытку", {
-                          description:
-                            "Вам отправлен код подтверждения, введите код пароль",
-                          action: {
-                            label: "Undo",
-                            onClick: () => console.log("Undo"),
-                          },
-                        })
-                  }
                   type="submit"
-                  className={`bg-primeColor hover:bg-black cursor-pointer w-full text-gray-200 text-base font-medium h-10 rounded-md hover:text-white duration-300`}
+                  className="bg-primeColor hover:bg-black cursor-pointer w-full text-gray-200 text-base font-medium h-10 rounded-md hover:text-white duration-300"
                 >
                   Создать аккаунт
                 </button>
