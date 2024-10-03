@@ -17,7 +17,6 @@ const persistConfig = {
   version: 1,
   storage,
 };
-
 const persistedReducer = persistReducer(persistConfig, orebiReducer);
 
 export const store = configureStore({
