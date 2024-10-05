@@ -113,7 +113,7 @@ const SignUp = () => {
           </Link>
         </div>
       </div>
-      <div className="w-full lgl:w-[500px] h-full flex flex-col justify-center">
+      <div className="w-full lgl:w-[500px] h-full">
         {successMsg ? (
           <div className="w-[500px]">
             <p className="w-full px-4 py-10 text-green-500 font-medium font-titleFont">
@@ -129,7 +129,7 @@ const SignUp = () => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="w-2/3 space-y-6"
+              className="space-y-6 w-[90%] container border py-2 rounded-sm my-[250px]"
             >
               <FormField
                 control={form.control}
@@ -154,7 +154,9 @@ const SignUp = () => {
                   </FormItem>
                 )}
               />
-              <Button type="submit">Отправить</Button>
+              <Button type="submit" className="rounded-none">
+                Отправить
+              </Button>
             </form>
           </Form>
         ) : (
