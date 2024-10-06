@@ -6,6 +6,9 @@ import bannerImgThree from "./banner/bannerImgThree.webp";
 import saleImgOne from "./sale/saleImgOne.webp";
 import saleImgTwo from "./sale/saleImgTwo.webp";
 import saleImgThree from "./sale/saleImgThree.webp";
+import heroBg from "./hero-bg.jpg";
+import heroBg1 from "./hero-bg1.jpg";
+import heroBg2 from "./hero-bg2.jpg";
 // ============== Products Start here ====================
 import cardbg from "./cardBack.jpg";
 // import cardbg1 from "./cardBack1.jpg";
@@ -45,6 +48,9 @@ export {
   saleImgOne,
   saleImgTwo,
   saleImgThree,
+  heroBg,
+  heroBg1,
+  heroBg2,
   // ===================== Products start here ============
   cardbg,
   // cardbg1,

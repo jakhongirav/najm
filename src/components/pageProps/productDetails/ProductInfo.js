@@ -34,8 +34,7 @@ const ProductInfo = ({ productInfo }) => {
       <p className="text-sm">Be the first to leave a review.</p>
       <div className="font-medium text-lg flex items-center gap-4">
         <span className="font-normal">Colors:</span>
-        {""}
-        <ToggleGroup type="single">
+        <ToggleGroup type="single" variant="outline">
           <ToggleGroupItem value="bold" aria-label="Toggle bold">
             <FontBoldIcon className="h-4 w-4" />
           </ToggleGroupItem>
@@ -43,7 +42,6 @@ const ProductInfo = ({ productInfo }) => {
             <FontItalicIcon className="h-4 w-4" />
           </ToggleGroupItem>
           <ToggleGroupItem
-            onClick={(e) => console.log(e)}
             value="strikethrough"
             aria-label="Toggle strikethrough"
           >

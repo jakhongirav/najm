@@ -70,7 +70,7 @@ export const SplOfferData = [
     _id: "204",
     img: spfFour,
     productName: "Sun glasses",
-    price: "220.00",
+    price: "15.00",
     color: "Black",
     badge: true,
     des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis.",
