@@ -6,7 +6,7 @@ const Offer = () => {
   const [prevLocation] = useState("");
 
   return (
-    <div className="max-w-container mx-auto">
+    <div className="container mx-auto">
       <Breadcrumbs title="Offer" prevLocation={prevLocation} />
       <div className="pb-10">
         <SpecialOffers />

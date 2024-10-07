@@ -56,8 +56,8 @@ const HeaderBottom = () => {
 
   return (
     <div className="w-full bg-[#F5F5F3] relative">
-      <div className="max-w-container mx-auto">
-        <Flex className="flex flex-col lg:flex-row items-start lg:items-center justify-between w-full px-4 pb-4 lg:pb-0 h-full lg:h-24">
+      <div className="container mx-auto">
+        <Flex className="flex flex-col lg:flex-row items-start lg:items-center justify-between w-full pb-4 lg:pb-0 h-full lg:h-24">
           <div
             onClick={() => setShow(!show)}
             ref={ref}

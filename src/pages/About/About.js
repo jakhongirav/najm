@@ -12,7 +12,7 @@ const About = () => {
   //   setPrevLocation(location.state.data);
   // }, [location]);
   return (
-    <div className="max-w-container mx-auto px-4 my-[100px]">
+    <div className="container mx-auto my-[100px]">
       <div className="text-center py-10 px-4">
         <h1 className="text-4xl mb-[50px] font-sans">О нас</h1>
         <div className="flex flex-wrap justify-around gap-4 md:gap-10 lg:gap-20">

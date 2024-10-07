@@ -22,7 +22,7 @@ const ProductDetails = () => {
   }, [location, productInfo]);
 
   return (
-    <div className="w-full my-5 mx-auto border-b-gray-300">
+    <div className="container w-full my-5 mx-auto border-b-gray-300">
       <div className="mx-auto px-4">
         <div className="xl:-mt-10 -mt-7">
           <Breadcrumbs prevLocation={prevLocation} />

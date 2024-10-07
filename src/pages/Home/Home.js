@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <div className="w-full mx-auto">
       <Banner />
-      <div className="mx-auto px-5 lgl:px-10">
+      <div className="container mx-auto px-5 lgl:px-10">
         <Sale />
         <NewArrivals />
         <BestSellers />

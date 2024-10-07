@@ -6,9 +6,11 @@ module.exports = {
     extend: {
       container: {
         center: true,
-        padding: "2rem",
-        screens: {
-          "2xl": "1536px",
+        padding: {
+          DEFAULT: "1rem", // Default padding for all screens
+          sm: "1.5rem", // Increased padding for small screens
+          lg: "2rem", // Even more padding for larger screens
+          xl: "3rem", // Extra padding for the largest screens
         },
       },
       screens: {

@@ -7,7 +7,7 @@ import { buttonVariants } from "../../ui/button";
 
 const Sale = () => {
   return (
-    <div className="md:container my-20 w-full mx-auto grid grid-rows-3 md:grid-rows-1 md:grid-cols-2 gap-4">
+    <div className="container my-20 w-full mx-auto grid grid-rows-3 md:grid-rows-1 md:grid-cols-2 gap-4">
       <Card
         className="md:col-span-1 row-span-1 md:row-auto"
         style={{
