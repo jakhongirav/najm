@@ -1,14 +1,15 @@
 import logo from "./logo.png";
 import logoLight from "./logoLight.png";
-import bannerImgOne from "./banner/bannerImgOne.webp";
-import bannerImgTwo from "./banner/bannerImgTwo.webp";
-import bannerImgThree from "./banner/bannerImgThree.webp";
 import saleImgOne from "./sale/saleImgOne.webp";
 import saleImgTwo from "./sale/saleImgTwo.webp";
 import saleImgThree from "./sale/saleImgThree.webp";
 import heroBg from "./hero-bg.jpg";
 import heroBg1 from "./hero-bg1.jpg";
 import heroBg2 from "./hero-bg2.jpg";
+import homeIcon from "./home-icon.png";
+import star from "./star.png";
+import wallet from "./wallet.png";
+import profileCircle from "./profile-user.png";
 // ============== Products Start here ====================
 import cardbg from "./cardBack.jpg";
 // import cardbg1 from "./cardBack1.jpg";
@@ -42,15 +43,16 @@ import emptyCart from "../images/emptyCart.png";
 export {
   logo,
   logoLight,
-  bannerImgOne,
-  bannerImgTwo,
-  bannerImgThree,
   saleImgOne,
   saleImgTwo,
   saleImgThree,
   heroBg,
   heroBg1,
   heroBg2,
+  homeIcon,
+  star,
+  wallet,
+  profileCircle,
   // ===================== Products start here ============
   cardbg,
   // cardbg1,

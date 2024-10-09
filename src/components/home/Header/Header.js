@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { MdClose } from "react-icons/md";
-import { HiMenuAlt2 } from "react-icons/hi";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+// import { MdClose } from "react-icons/md";
+// import { HiMenuAlt2 } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { logo } from "../../../assets/images";
 import Image from "../../designLayouts/Image";
@@ -10,9 +10,11 @@ import Flex from "../../designLayouts/Flex";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(true);
-  const [sidenav, setSidenav] = useState(false);
-  const [category, setCategory] = useState(false);
-  const [brand, setBrand] = useState(false);
+  // const [sidenav, setSidenav] = useState(false);
+  // const [category, setCategory] = useState(false);
+  // const [brand, setBrand] = useState(false);
+  const navigate = useNavigate();
+
   const location = useLocation();
   useEffect(() => {
     let ResponsiveMenu = () => {
@@ -123,7 +125,6 @@ const Header = () => {
                 </motion.div>
               </div>
             )} */}
-            {/* Mobile nav */}
           </div>
         </Flex>
       </nav>
