@@ -29,12 +29,14 @@ const Header = () => {
   return (
     <div className="w-full h-20 bg-white sticky top-0 z-50 border-b-[1px] border-b-gray-200">
       <nav className="container h-full mx-auto relative">
-        <Flex className="flex items-center justify-between h-full">
+        <Flex className="flex items-center justify-center md:justify-between h-full">
+          {/* Logo */}
           <Link to="/">
             <div>
               <Image className="w-20 object-cover" imgSrc={logo} />
             </div>
           </Link>
+          {/* Nav */}
           <div>
             {showMenu && (
               <motion.ul
@@ -57,11 +59,12 @@ const Header = () => {
                 </>
               </motion.ul>
             )}
-            <HiMenuAlt2
+            {/* <HiMenuAlt2
               onClick={() => setSidenav(!sidenav)}
               className="inline-block md:hidden cursor-pointer w-8 h-6 absolute top-6 right-4"
-            />
-            {sidenav && (
+            /> */}
+            {/* Side Nav */}
+            {/* {sidenav && (
               <div className="fixed top-0 left-0 w-full h-screen bg-black text-gray-200 bg-opacity-80 z-50">
                 <motion.div
                   initial={{ x: -300, opacity: 0 }}
@@ -119,7 +122,8 @@ const Header = () => {
                   </span>
                 </motion.div>
               </div>
-            )}
+            )} */}
+            {/* Mobile nav */}
           </div>
         </Flex>
       </nav>
