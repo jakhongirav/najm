@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
-import { homeIcon, star, wallet, profileCircle } from "../../../assets/images";
 import Image from "../../designLayouts/Image";
+import {
+  homeIcon,
+  star,
+  profileCircle,
+  shoppingCart,
+} from "../../../assets/images";
 
 export default function FooterNav() {
   return (
@@ -9,13 +14,13 @@ export default function FooterNav() {
         <Link to="/">
           <Image imgSrc={homeIcon} className="w-[30px] h-[30px]" />
         </Link>
-        <Link to="/">
-          <Image imgSrc={wallet} className="w-[30px] h-[30px]" />
+        <Link to="/shop">
+          <Image imgSrc={shoppingCart} className="w-[30px] h-[30px]" />
         </Link>
-        <Link to="/">
+        <Link to="/saved">
           <Image imgSrc={star} className="w-[30px] h-[30px]" />
         </Link>
-        <Link to="/">
+        <Link to="/signin">
           <Image imgSrc={profileCircle} className="w-[30px] h-[30px]" />
         </Link>
       </div>

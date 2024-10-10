@@ -10,6 +10,7 @@ import homeIcon from "./home-icon.png";
 import star from "./star.png";
 import wallet from "./wallet.png";
 import profileCircle from "./profile-user.png";
+import shoppingCart from "./shopping-cart.png";
 // ============== Products Start here ====================
 import cardbg from "./cardBack.jpg";
 // import cardbg1 from "./cardBack1.jpg";
@@ -53,6 +54,7 @@ export {
   star,
   wallet,
   profileCircle,
+  shoppingCart,
   // ===================== Products start here ============
   cardbg,
   // cardbg1,
