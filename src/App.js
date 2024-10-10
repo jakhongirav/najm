@@ -24,6 +24,7 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
 import { Toaster } from "./components/ui/toaster";
 import FooterNav from "./components/home/Footer/FooterNav";
+import Saved from "./pages/Saved/Saved";
 
 const Layout = () => {
   return (
@@ -53,6 +54,7 @@ const router = createBrowserRouter(
         <Route path="/offer" element={<Offer />}></Route>
         <Route path="/product/:_id" element={<ProductDetails />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
+        <Route path="/saved" element={<Saved />}></Route>
         <Route path="/paymentgateway" element={<Payment />}></Route>
       </Route>
       <Route path="/signup" element={<SignUp />}></Route>

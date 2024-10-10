@@ -5,8 +5,8 @@ import { MdOutlineLabelImportant } from "react-icons/md";
 import Image from "../../designLayouts/Image";
 import Badge from "./Badge";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../../redux/orebiSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, addToSaved } from "../../../redux/orebiSlice";
 import { buttonVariants } from "../../ui/button";
 import axios from "axios";
 
@@ -23,6 +23,8 @@ const Product = (props) => {
   //     console.log(err);
   //   }
   // });
+
+  const liked = useSelector((state) => state.orebiReducer.liked);
 
   const dispatch = useDispatch();
   const _id = props.productName;
@@ -71,7 +73,22 @@ const Product = (props) => {
                 <FaShoppingCart />
               </span>
             </li>
-            <li className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full">
+            <li
+              onClick={() => {
+                dispatch(
+                  addToSaved({
+                    _id: props._id,
+                    name: props.productName,
+                    image: props.img,
+                    badge: props.badge,
+                    price: props.price,
+                    colors: props.color,
+                  })
+                );
+                console.log(liked);
+              }}
+              className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
+            >
               Добавить в избранные
               <span>
                 <BsSuitHeartFill />

@@ -1,37 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
-import { resetCart } from "../../redux/orebiSlice";
+import { resetSaved } from "../../redux/orebiSlice";
 import { emptyCart } from "../../assets/images/index";
-import ItemCard from "./SavedItem";
+import SavedItem from "./SavedItem";
 
 const Saved = () => {
   const dispatch = useDispatch();
   const liked = useSelector((state) => state.orebiReducer.liked);
-  const [totalAmt, setTotalAmt] = useState("");
-  const [shippingCharge, setShippingCharge] = useState("");
-  useEffect(() => {
-    let price = 0;
-    liked.map((item) => {
-      price += item.price * item.quantity;
-      return price;
-    });
-    setTotalAmt(price);
-  }, [liked]);
-  useEffect(() => {
-    if (totalAmt <= 200) {
-      setShippingCharge(30);
-    } else if (totalAmt <= 400) {
-      setShippingCharge(25);
-    } else if (totalAmt > 401) {
-      setShippingCharge(20);
-    }
-  }, [totalAmt]);
+  console.log(liked);
+
   return (
     <div className="container mx-auto">
-      <Breadcrumbs title="Корзина" />
+      <Breadcrumbs title="Избранные" />
       {liked.length > 0 ? (
         <div className="pb-20">
           <div className="w-full h-20 bg-[#F5F7F7] text-primeColor hidden lgl:grid grid-cols-5 place-content-center px-6 text-lg font-titleFont font-semibold">
@@ -43,19 +26,19 @@ const Saved = () => {
           <div className="mt-5">
             {liked.map((item) => (
               <div key={item._id}>
-                <ItemCard item={item} />
+                <SavedItem item={item} />
               </div>
             ))}
           </div>
 
           <button
-            onClick={() => dispatch(resetCart())}
+            onClick={() => dispatch(resetSaved())}
             className="py-2 px-10 bg-red-500 text-white font-semibold uppercase mb-4 hover:bg-red-700 duration-300"
           >
-            Очистить корзину
+            Очистить избранные
           </button>
 
-          <div className="max-w-7xl gap-4 flex justify-end mt-4">
+          {/* <div className="max-w-7xl gap-4 flex justify-end mt-4">
             <div className="w-96 flex flex-col gap-4">
               <h1 className="text-2xl font-semibold text-right">Результаты</h1>
               <div>
@@ -86,7 +69,7 @@ const Saved = () => {
                 </Link>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       ) : (
         <motion.div
@@ -104,15 +87,11 @@ const Saved = () => {
           </div>
           <div className="max-w-[500px] p-4 py-8 bg-white flex gap-4 flex-col items-center rounded-md shadow-lg">
             <h1 className="font-titleFont text-xl font-bold uppercase">
-              Your Cart feels lonely.
+              Пусто
             </h1>
-            <p className="text-sm text-center px-10 -mt-2">
-              Your Shopping cart lives to serve. Give it purpose - fill it with
-              books, electronics, videos, etc. and make it happy.
-            </p>
             <Link to="/shop">
               <button className="bg-primeColor rounded-md cursor-pointer hover:bg-black active:bg-gray-900 px-8 py-2 font-titleFont font-semibold text-lg text-gray-200 hover:text-white duration-300">
-                Continue Shopping
+                Продолжить покупки
               </button>
             </Link>
           </div>

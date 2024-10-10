@@ -28,6 +28,7 @@ export const orebiSlice = createSlice({
   name: "orebi",
   initialState,
   reducers: {
+    //--------------- Product Actions -----------------
     getNewArrivalsSuccess: (state, action) => {
       const newArrivals = action.payload;
       state.newArrivals = newArrivals;
@@ -40,6 +41,7 @@ export const orebiSlice = createSlice({
       const products = action.payload;
       state.products = products;
     },
+    //--------------- Cart Actions -----------------
     addToCart: (state, action) => {
       const itemInSaved = state.saved.find(
         (savedItem) => savedItem._id === action.payload._id
@@ -55,7 +57,6 @@ export const orebiSlice = createSlice({
         });
       }
     },
-
     increaseQuantity: (state, action) => {
       const item = state.saved.find((item) => item._id === action.payload._id);
       if (item) {
@@ -76,17 +77,41 @@ export const orebiSlice = createSlice({
     resetCart: (state) => {
       state.saved = [];
     },
+    //--------------- Saved Actions -----------------
+    addToSaved: (state, action) => {
+      const itemInSaved = state.liked.find(
+        (savedItem) => savedItem._id === action.payload._id
+      );
+
+      if (!itemInSaved) {
+        state.liked.push({
+          ...action.payload,
+        });
+      }
+    },
+    deleteSaved: (state, action) => {
+      state.liked = state.liked.filter((item) => item._id !== action.payload);
+    },
+    resetSaved: (state) => {
+      state.liked = [];
+    },
   },
 });
 
 export const {
+  // Cart actions
   addToCart,
   increaseQuantity,
   drecreaseQuantity,
   deleteItem,
   resetCart,
+  // Product actions
   getCategoriesSuccess,
   getAllProductsSuccess,
+  // Saved actions
+  addToSaved,
+  deleteSaved,
+  resetSaved,
 } = orebiSlice.actions;
 export default orebiSlice.reducer;
 

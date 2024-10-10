@@ -9,7 +9,7 @@ import {
 
 export default function FooterNav() {
   return (
-    <div className="w-[99%] md:hidden mx-auto fixed bottom-0 right-0 left-0 bg-white rounded-t-lg">
+    <div className="w-[99%] md:hidden mx-auto fixed bottom-0 right-0 left-0 bg-white rounded-t-lg z-50">
       <div className="flex items-center justify-around p-3">
         <Link to="/">
           <Image imgSrc={homeIcon} className="w-[30px] h-[30px]" />
