@@ -22,17 +22,17 @@ const ProductDetails = () => {
   }, [location, productInfo]);
 
   return (
-    <div className="container w-full my-5 mx-auto border-b-gray-300">
-      <div className="mx-auto px-4">
+    <div className="w-full my-5 mx-auto border-b-gray-300">
+      <div className="mx-auto">
         <div className="xl:-mt-10 -mt-7">
           <Breadcrumbs prevLocation={prevLocation} />
         </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 xl:grid-rows-1 gap-4 h-full -mt-5 xl:-mt-8 pb-10 bg-gray-100 p-4">
-          <div className="h-full sml:px-10 w-[60%] mx-auto md:col-span-2 xl:col-span-3 flex flex-col justify-center items-center">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 xl:grid-rows-1 gap-4 h-full -mt-5 xl:-mt-8 bg-white">
+          <div className="h-full w-[60%] mx-auto md:col-span-2 xl:col-span-3 flex flex-col justify-center items-center">
             <img
               className="w-full h-full object-cover"
               src={productInfo.img}
-              alt={productInfo.img}
+              alt="najm"
             />
             <Carousel
               opts={{
@@ -46,7 +46,7 @@ const ProductDetails = () => {
                     key={index}
                     className="basis-1 sm:basis-1/2 sml:basis-1/3"
                   >
-                    <div className="">
+                    <div>
                       <Card>
                         <CardContent className="w-full flex aspect-square items-center justify-center p-2">
                           <img
@@ -64,7 +64,7 @@ const ProductDetails = () => {
               <CarouselNext />
             </Carousel>
           </div>
-          <div className="h-full w-full row-span-auto md:col-span-2 xl:col-span-3 xl:p-14 flex flex-col gap-6 justify-center">
+          <div className="h-full w-full row-span-auto md:col-span-2 xl:col-span-3 xl:p-14 flex flex-col gap-6 justify-center p-4">
             <ProductInfo productInfo={productInfo} />
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { ImCross } from "react-icons/im";
 import { useDispatch } from "react-redux";
-import { deleteSaved } from "../../redux/orebiSlice";
+import { addToCart, deleteSaved } from "../../redux/orebiSlice";
 import { Button } from "../../components/ui/button";
 
 const SavedItem = ({ item }) => {
@@ -24,7 +24,24 @@ const SavedItem = ({ item }) => {
           dummy text ever since the 1500s.
         </p>
       </div>
-      <Button>Add to cart</Button>
+      <Button
+        className="rounded-none w-[97%] mx-auto"
+        onClick={() => {
+          dispatch(
+            addToCart({
+              _id: item._id,
+              name: item.productName,
+              quantity: 1,
+              image: item.img,
+              badge: item.badge,
+              price: item.price,
+              colors: item.color,
+            })
+          );
+        }}
+      >
+        Add to cart
+      </Button>
     </div>
   );
 };

@@ -33,7 +33,7 @@ const SpecialCase = () => {
           )}
         </div>
       </Link>
-      <Link to="/favorites">
+      <Link to="/saved">
         <div className="bg-white w-[70px] h-[70px] rounded-md flex flex-col gap-1 text-[#33475b] justify-center items-center shadow-testShadow overflow-x-hidden group cursor-pointer relative">
           <div className="flex justify-center items-center">
             <RiStarFill className="text-2xl -translate-x-12 group-hover:translate-x-3 transition-transform duration-200" />
