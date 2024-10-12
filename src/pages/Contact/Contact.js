@@ -63,6 +63,8 @@ const Contact = () => {
     }
   };
 
+  // translate, add socials, address and contact info.
+
   return (
     <div className="container mx-auto">
       <Breadcrumbs title="Contact" prevLocation={prevLocation} />
@@ -94,13 +96,13 @@ const Contact = () => {
             </div>
             <div>
               <p className="text-base font-titleFont font-semibold px-2">
-                Email
+                Телефон
               </p>
               <input
                 onChange={handleEmail}
                 value={email}
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
-                type="email"
+                type="number"
                 placeholder="Enter your name here"
               />
               {errEmail && (

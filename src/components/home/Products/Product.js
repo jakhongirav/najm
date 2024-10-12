@@ -51,6 +51,7 @@ const Product = (props) => {
           {props.badge && <Badge text="New" />}
         </div>
         <div className="w-full py-2 absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700">
+          {/* Make ui position absolute */}
           <ul className="w-full h-full flex flex-col items-end justify-center gap-2 font-titleFont px-2 border-l border-r">
             <li
               onClick={() => {
