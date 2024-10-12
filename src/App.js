@@ -28,7 +28,7 @@ import Saved from "./pages/Saved/Saved";
 
 const Layout = () => {
   return (
-    <div>
+    <div className="relative">
       <Header />
       <HeaderBottom />
       <SpecialCase />
