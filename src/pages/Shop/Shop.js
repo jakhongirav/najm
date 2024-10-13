@@ -12,6 +12,12 @@ const Shop = () => {
   useEffect(() => {
     dispatch(getAllProducts());
   }, []);
+
+  const [selectedConf, setSelectedConf] = useState("nma gap");
+  const confItem = async (item) => {
+    setSelectedConf(item);
+  };
+
   const [itemsPerPage, setItemsPerPage] = useState(12);
   const itemsPerPageFromBanner = (itemsPerPage) => {
     setItemsPerPage(itemsPerPage);
@@ -26,7 +32,10 @@ const Shop = () => {
           <ShopSideNav />
         </div>
         <div className="w-full mdl:w-[80%] lgl:w-[75%] h-full flex flex-col gap-10">
-          <ProductBanner itemsPerPageFromBanner={itemsPerPageFromBanner} />
+          <ProductBanner
+            itemsPerPageFromBanner={itemsPerPageFromBanner}
+            confItem={confItem}
+          />
           <Pagination itemsPerPage={itemsPerPage} />
         </div>
       </div>
