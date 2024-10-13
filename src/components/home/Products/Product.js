@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
-import { BsSuitHeartFill } from "react-icons/bs";
-import { FaShoppingCart } from "react-icons/fa";
-import { MdOutlineLabelImportant } from "react-icons/md";
 import Image from "../../designLayouts/Image";
 import Badge from "./Badge";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, addToSaved } from "../../../redux/orebiSlice";
 import { buttonVariants } from "../../ui/button";
-import axios from "axios";
+import { shoppingCart, star } from "../../../assets/images";
+// import axios from "axios";
 
 const Product = (props) => {
   // let [products, setProducts] = useEffect("");
@@ -50,9 +48,8 @@ const Product = (props) => {
         <div className="absolute top-6 left-8">
           {props.badge && <Badge text="New" />}
         </div>
-        <div className="w-full py-2 absolute bg-white -bottom-[130px] group-hover:bottom-0 duration-700">
-          {/* Make ui position absolute */}
-          <ul className="w-full h-full flex flex-col items-end justify-center gap-2 font-titleFont px-2 border-l border-r">
+        <div className="py-2 absolute top-[5%] right-[5%]">
+          <ul className="flex flex-col items-end justify-center gap-4 font-titleFont">
             <li
               onClick={() => {
                 dispatch(
@@ -67,12 +64,13 @@ const Product = (props) => {
                   })
                 );
               }}
-              className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
+              className="gap-2 hover:cursor-pointer duration-300 p-2 rounded-full border border-gray-600 hover:border-primeColor"
             >
-              Добавить в корзину
-              <span>
-                <FaShoppingCart />
-              </span>
+              <Image
+                imgSrc={shoppingCart}
+                alt="najm"
+                className="w-[20px] h-20px]"
+              />
             </li>
             <li
               onClick={() => {
@@ -86,14 +84,11 @@ const Product = (props) => {
                     colors: props.color,
                   })
                 );
-                console.log(liked);
               }}
-              className="text-[#767676] hover:text-primeColor text-sm font-normal border-b-[1px] border-b-gray-200 hover:border-b-primeColor flex items-center justify-end gap-2 hover:cursor-pointer pb-1 duration-300 w-full"
+              className="gap-2 hover:cursor-pointer duration-300 p-2 rounded-full border border-gray-600 hover:border-primeColor"
             >
-              Добавить в избранные
-              <span>
-                <BsSuitHeartFill />
-              </span>
+              {/* Image */}
+              <Image imgSrc={star} alt="najm" className="w-[20px] h-[20px]" />
             </li>
           </ul>
         </div>
