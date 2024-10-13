@@ -28,14 +28,15 @@ const ProductBanner = ({ itemsPerPageFromBanner, confItem }) => {
             <option value="New Arrival">Новинки</option>
           </select>
         </div> */}
-        <Select onValueChange={(e) => confItem(e)}>
+        <Select onValueChange={(e) => confItem(e)} defaultValue="all-products">
           <SelectTrigger className="w-[150px]">
             <SelectValue placeholder="Сортировать по:" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="newArrivals">Новинкии</SelectItem>
-              <SelectItem value="bestsellers">Бестселлары</SelectItem>
+              <SelectItem value="all-products">Все продукты</SelectItem>
+              <SelectItem value="new-products">Новинкии</SelectItem>
+              <SelectItem value="best-sellers">Бестселлары</SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>

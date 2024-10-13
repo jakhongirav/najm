@@ -39,18 +39,6 @@ const ProductInfo = ({ productInfo }) => {
       <div className="font-medium text-lg flex items-center gap-4">
         <span className="font-normal">Цвета:</span>
         <ToggleGroup type="single" variant="outline">
-          {/* <ToggleGroupItem value="bold" aria-label="Toggle bold">
-            <FontBoldIcon className="h-4 w-4" />
-          </ToggleGroupItem>
-          <ToggleGroupItem value="italic" aria-label="Toggle italic">
-            <FontItalicIcon className="h-4 w-4" />
-          </ToggleGroupItem>
-          <ToggleGroupItem
-            value="strikethrough"
-            aria-label="Toggle strikethrough"
-          >
-            <UnderlineIcon className="h-4 w-4" />
-          </ToggleGroupItem> */}
           {randomColors.map((item) => (
             <ToggleGroupItem
               key={item.id}
