@@ -57,14 +57,16 @@ const ProductDetails = () => {
           <Breadcrumbs prevLocation={prevLocation} />
         </div>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 xl:grid-rows-1 gap-4 h-full -mt-5 xl:-mt-8 bg-white">
-          <div className="h-full w-[60%] mx-auto md:col-span-2 xl:col-span-3 flex flex-col justify-center items-center">
-            {currentImage && (
-              <img
-                className="w-auto max-h-80 object-fill"
-                src={currentImage.image}
-                alt="product"
-              />
-            )}
+          <div className="h-full w-[60%] mx-auto md:col-span-2 xl:col-span-3 flex flex-col gap-1 justify-center items-center">
+            <div className="">
+              {currentImage && (
+                <img
+                  className="w-auto max-h-80 sml:w-[400px] sml:h-[400px] object-contain"
+                  src={currentImage.image}
+                  alt="product"
+                />
+              )}
+            </div>
             {images.length > 1 ? (
               <Carousel
                 opts={{
@@ -80,10 +82,12 @@ const ProductDetails = () => {
                       onClick={() => setImage(image.id)}
                     >
                       <div>
-                        <Card>
-                          <CardContent className="w-full flex aspect-square items-center justify-center p-2">
+                        <Card
+                          className={`${image.id === currentImage.id && "border-primeColor"} h-[120px]`}
+                        >
+                          <CardContent className="w-full flex aspect-square items-center justify-center p-1">
                             <img
-                              className="w-full object-cover"
+                              className="w-full object-contain object-center"
                               src={image.image}
                               alt="product thumbnail"
                             />

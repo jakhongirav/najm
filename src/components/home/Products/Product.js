@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Image from "../../designLayouts/Image";
 import Badge from "./Badge";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart, addToSaved } from "../../../redux/orebiSlice";
 import { buttonVariants } from "../../ui/button";
 import { shoppingCart, star } from "../../../assets/images";
@@ -26,9 +26,13 @@ const Product = (props) => {
 
   return (
     <div className="w-full relative group">
-      <div className="max-w-80 max-h-80 relative overflow-y-hidden ">
-        <div>
-          <Image className="w-full h-full" imgSrc={props.img[0].image} />
+      <div className="max-w-80 max-h-80 relative overflow-hidden ">
+        <div className="w-full h-full">
+          {/* Updated Image styling */}
+          <Image
+            className="w-full h-full object-cover object-center"
+            imgSrc={props.img[0].image}
+          />
         </div>
         <div className="absolute top-6 left-8">
           {props.badge && <Badge text="New" />}
@@ -56,8 +60,8 @@ const Product = (props) => {
             >
               <Image
                 imgSrc={shoppingCart}
-                alt="najm"
-                className="w-[20px] h-20px]"
+                alt="cart"
+                className="w-[20px] h-[20px]"
               />
             </li>
             <li
@@ -79,8 +83,7 @@ const Product = (props) => {
               }}
               className="gap-2 hover:cursor-pointer duration-300 p-2 rounded-full border border-gray-600 hover:border-primeColor"
             >
-              {/* Image */}
-              <Image imgSrc={star} alt="najm" className="w-[20px] h-[20px]" />
+              <Image imgSrc={star} alt="star" className="w-[20px] h-[20px]" />
             </li>
           </ul>
         </div>
@@ -95,7 +98,10 @@ const Product = (props) => {
         <div className="w-full">
           <button
             onClick={handleProductDetails}
-            className={`${buttonVariants({ variant: "outline", size: "default" })} text-primeColor rounded-none w-full`}
+            className={`${buttonVariants({
+              variant: "outline",
+              size: "default",
+            })} text-primeColor rounded-none w-full`}
           >
             Перейти
           </button>
