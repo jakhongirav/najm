@@ -56,7 +56,7 @@ const Product = (props) => {
             <div className="p-4">
               <div className="font-titleFont pb-4">
                 <h2 className="text-lg text-primeColor font-bold pb-2">
-                  {props.productName}
+                  {props.product_name}
                 </h2>
                 <p className="text-[#767676] text-[14px] font-bold">
                   {props.price} сумов

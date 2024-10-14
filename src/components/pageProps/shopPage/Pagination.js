@@ -13,11 +13,11 @@ function Items({ currentItems }) {
               category={item.category}
               id={item.id}
               img={item.images}
-              productName={item.name}
+              product_name={item.name}
               price={item.price}
               des={item.description}
-              inStock={item.in_stock}
-              isRecommended={item.is_recommended}
+              in_stock={item.in_stock}
+              is_recommended={item.is_recommended}
               slug={item.slug}
             />
           </div>

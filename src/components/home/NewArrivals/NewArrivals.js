@@ -66,13 +66,13 @@ const NewArrivals = () => {
             <Product
               id={product.id}
               img={product.images}
-              productName={product.name}
+              product_name={product.name}
               price={product.price}
               badge={true}
               des={product.description}
               slug={product.slug}
-              inStock={product.in_stock}
-              isRecommended={product.is_recommended}
+              in_stock={product.in_stock}
+              is_recommended={product.is_recommended}
               category={product.category}
             />
           </div>
