@@ -9,17 +9,17 @@ const Sale = () => {
   return (
     <div className="my-20 w-full mx-auto grid grid-rows-3 md:grid-rows-1 md:grid-cols-2 gap-4">
       <Card
-        className="md:col-span-1 row-span-1 md:row-auto"
+        className="relative md:col-span-1 row-span-1 md:row-auto after:absolute after:w-full after:h-full after:top-0 after:bg-black after:rounded-xl after:opacity-[50%] after:z-0"
         style={{
           backgroundImage: `url(${cardbg})`,
           background: "contain",
           backgroundPosition: "bottom",
         }}
       >
-        <CardHeader>
+        <CardHeader className="z-10">
           <CardTitle className="text-2xl text-[#fff]">Ежедневники</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="z-10">
           <Link
             to={"/"}
             className={cn(buttonVariants("default"), `rounded-none`)}

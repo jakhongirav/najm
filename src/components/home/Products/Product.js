@@ -6,30 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, addToSaved } from "../../../redux/orebiSlice";
 import { buttonVariants } from "../../ui/button";
 import { shoppingCart, star } from "../../../assets/images";
-// import axios from "axios";
 
 const Product = (props) => {
-  // let [products, setProducts] = useEffect("");
-
-  // useEffect(() => {
-  //   try {
-  //     axios.get("http://38.242.226.165/products/all-products/").then((res) => {
-  //       setProducts(res.json());
-  //       console.log(res);
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // });
-
-  const liked = useSelector((state) => state.orebiReducer.liked);
-
   const dispatch = useDispatch();
-  const _id = props.productName;
-  const idString = (_id) => {
-    return String(_id).toLowerCase().split(" ").join("");
+  const id = props.id;
+  const idString = (id) => {
+    return String(id).toLowerCase().split(" ").join("");
   };
-  const rootId = idString(_id);
+  const rootId = idString(id);
   const navigate = useNavigate();
   const productItem = props;
   const handleProductDetails = () => {
@@ -39,11 +23,12 @@ const Product = (props) => {
       },
     });
   };
+
   return (
     <div className="w-full relative group">
       <div className="max-w-80 max-h-80 relative overflow-y-hidden ">
         <div>
-          <Image className="w-full h-full" imgSrc={props.img} />
+          <Image className="w-full h-full" imgSrc={props.img[0].image} />
         </div>
         <div className="absolute top-6 left-8">
           {props.badge && <Badge text="New" />}
@@ -54,13 +39,16 @@ const Product = (props) => {
               onClick={() => {
                 dispatch(
                   addToCart({
-                    _id: props._id,
-                    name: props.productName,
-                    quantity: 1,
-                    image: props.img,
-                    badge: props.badge,
+                    id: props.id,
+                    images: props.img,
+                    name: props.name,
+                    description: props.des,
                     price: props.price,
-                    colors: props.color,
+                    slug: props.slug,
+                    inStock: props.inStock,
+                    quantity: 1,
+                    isRecommended: props.isRecommended,
+                    category: props.category,
                   })
                 );
               }}
@@ -76,12 +64,16 @@ const Product = (props) => {
               onClick={() => {
                 dispatch(
                   addToSaved({
-                    _id: props._id,
-                    name: props.productName,
-                    image: props.img,
-                    badge: props.badge,
+                    id: props.id,
+                    images: props.img,
+                    name: props.name,
+                    description: props.des,
                     price: props.price,
-                    colors: props.color,
+                    slug: props.slug,
+                    inStock: props.inStock,
+                    quantity: 1,
+                    isRecommended: props.isRecommended,
+                    category: props.category,
                   })
                 );
               }}
@@ -98,7 +90,7 @@ const Product = (props) => {
           <h2 className="text-lg text-primeColor font-bold">
             {props.productName}
           </h2>
-          <p className="text-[#767676] text-[14px]">${props.price}</p>
+          <p className="text-[#767676] text-[14px]">{props.price} сумов</p>
         </div>
         <div className="w-full">
           <button

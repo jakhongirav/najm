@@ -1,60 +1,63 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart, addToSaved } from "../../../redux/orebiSlice";
-import { ToggleGroup, ToggleGroupItem } from "../../ui/toggleGroup";
-import {
-  FontBoldIcon,
-  FontItalicIcon,
-  UnderlineIcon,
-} from "@radix-ui/react-icons";
+import { Card, CardContent } from "../../ui/card";
+import { Skeleton } from "../../../components/ui/skeleton";
 
 const ProductInfo = ({ productInfo }) => {
-  const randomColors = [
-    { id: 1, color: "#FF5733" }, // Red-Orange
-    { id: 2, color: "#33FF57" }, // Green
-    { id: 3, color: "#3357FF" }, // Blue
-    { id: 4, color: "#F0E68C" }, // Khaki
-    { id: 5, color: "#FF33A1" }, // Pink
-  ];
-
-  const [selectedValue, setSelectedValue] = useState("");
-
-  const Select = (val) => {
-    setSelectedValue(val);
-    console.log(val);
-  };
-
   const dispatch = useDispatch();
+
+  // Set default color state correctly
+  const [defaultColor, setDefaultColor] = useState("");
+
+  useEffect(() => {
+    if (productInfo && productInfo.img && productInfo.img.length === 1) {
+      setDefaultColor(productInfo.img[0].id); // Set the first image's id as default
+    }
+  }, [productInfo]);
+
+  // Check if productInfo or productInfo.img is undefined/null
+  if (!productInfo || !productInfo.img) {
+    return (
+      <div className="space-y-2 w-full h-full text-center">
+        <Skeleton className="h-7 w-full" />
+        <Skeleton className="h-7 w-full" />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col gap-5">
       <h2 className="text-3xl md:text-4xl font-semibold">
         {productInfo.productName}
       </h2>
-      <p className="text-xl font-semibold">${productInfo.price}</p>
+      <p className="text-xl font-semibold">{productInfo.price} сумов</p>
       <p className="text-base text-gray-600">
         <b>Описание: </b>
         {productInfo.des}
       </p>
-      <div className="font-medium text-lg flex items-center gap-4">
+
+      <div className="font-medium text-lg flex flex-col items-start gap-4">
         <span className="font-normal">Цвета:</span>
-        <ToggleGroup type="single" variant="outline">
-          {randomColors.map((item) => (
-            <ToggleGroupItem
-              key={item.id}
-              value={item.id}
-              aria-label="Color picker"
-              className="hover:border rounded-full p-[1px] hover:border-primeColor"
-              onClick={(e) => console.log(e)}
-            >
-              <span
-                style={{ backgroundColor: item.color }}
-                className="w-8 h-8 rounded-full"
-              ></span>
-            </ToggleGroupItem>
-          ))}
-        </ToggleGroup>
+        {productInfo.img.map((img) => (
+          <Card
+            key={img.id}
+            className={`max-w-[100px] cursor-pointer ${
+              img.id === defaultColor ? "border-primeColor" : ""
+            }`}
+            onClick={() => setDefaultColor(img.id)}
+          >
+            <CardContent className="w-full flex aspect-square items-center justify-center p-2">
+              <img
+                className="w-full object-cover"
+                src={img.image}
+                alt="product thumbnail"
+              />
+            </CardContent>
+          </Card>
+        ))}
       </div>
+
       <button
         onClick={() =>
           dispatch(
@@ -65,7 +68,7 @@ const ProductInfo = ({ productInfo }) => {
               image: productInfo.img,
               badge: productInfo.badge,
               price: productInfo.price,
-              colors: productInfo.color,
+              color: defaultColor,
             })
           )
         }
@@ -83,7 +86,7 @@ const ProductInfo = ({ productInfo }) => {
               image: productInfo.img,
               badge: productInfo.badge,
               price: productInfo.price,
-              colors: productInfo.color,
+              color: defaultColor,
             })
           )
         }
@@ -91,9 +94,10 @@ const ProductInfo = ({ productInfo }) => {
       >
         Добавить в корзину
       </button>
+
       <p className="font-normal text-sm">
-        <span className="text-base font-medium"> Категории:</span> Spring
-        collection, Streetwear, Women Tags: featured SKU: N/A
+        <span className="text-base font-medium">Категории:</span>{" "}
+        {productInfo.category.name}
       </p>
     </div>
   );

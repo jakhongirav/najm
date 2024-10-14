@@ -20,6 +20,7 @@ const initialState = {
   products: [],
   categories: [],
   newArrivals: [],
+  bestSellers: [],
   saved: [],
   liked: [],
 };
@@ -40,6 +41,10 @@ export const orebiSlice = createSlice({
     getAllProductsSuccess: (state, action) => {
       const products = action.payload;
       state.products = products;
+    },
+    getBestSellersSuccess: (state, action) => {
+      const bestSellers = action.payload;
+      state.bestSellers = bestSellers;
     },
     //--------------- Cart Actions -----------------
     addToCart: (state, action) => {
@@ -108,6 +113,7 @@ export const {
   // Product actions
   getCategoriesSuccess,
   getAllProductsSuccess,
+  getBestSellersSuccess,
   // Saved actions
   addToSaved,
   deleteSaved,
@@ -568,6 +574,20 @@ export function getNewArrivals() {
         .get("http://38.242.226.165/products/new-products/")
         .then((res) => {
           dispatch(orebiSlice.actions.getNewArrivalsSuccess(res.data));
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+}
+
+export function getBestSellers() {
+  return async function (dispatch) {
+    try {
+      await axios
+        .get("http://38.242.226.165/products/best-sellers/")
+        .then((res) => {
+          dispatch(orebiSlice.actions.getBestSellersSuccess(res.data));
         });
     } catch (err) {
       console.log(err);
