@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
 import Product from "../../home/Products/Product";
-// import { paginationItems } from "../../../constants";
 import { useSelector } from "react-redux";
 
 function Items({ currentItems }) {
@@ -9,15 +8,17 @@ function Items({ currentItems }) {
     <>
       {currentItems &&
         currentItems.map((item) => (
-          <div key={item._id} className="w-full">
+          <div key={item.id} className="w-full">
             <Product
-              _id={item._id}
-              img={item.img}
-              productName={item.productName}
+              category={item.category}
+              id={item.id}
+              img={item.images}
+              productName={item.name}
               price={item.price}
-              color={item.color}
-              badge={item.badge}
-              des={item.des}
+              des={item.description}
+              inStock={item.in_stock}
+              isRecommended={item.is_recommended}
+              slug={item.slug}
             />
           </div>
         ))}
@@ -28,27 +29,16 @@ function Items({ currentItems }) {
 const Pagination = ({ itemsPerPage }) => {
   const products = useSelector((state) => state.orebiReducer.products);
 
-  // Here we use item offsets; we could also use page offsets
-  // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
-  const [itemStart, setItemStart] = useState(1);
 
-  // Simulate fetching items from another resources.
-  // (This could be items from props; or items loaded in a local state
-  // from an API endpoint with useEffect and useState)
   const endOffset = itemOffset + itemsPerPage;
-  //   console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentItems = products.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(products.length / itemsPerPage);
 
-  // Invoke when user click to request another page.
+  // Invoke when user clicks to request another page.
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % products.length;
     setItemOffset(newOffset);
-    // console.log(
-    //   `User requested page number ${event.selected}, which is offset ${newOffset},`
-    // );
-    setItemStart(newOffset);
   };
 
   return (
@@ -69,9 +59,9 @@ const Pagination = ({ itemsPerPage }) => {
           containerClassName="flex text-base font-semibold font-titleFont py-10"
           activeClassName="bg-black text-white"
         />
-
         <p className="text-base font-normal text-lightText">
-          Products from {itemStart === 0 ? 1 : itemStart} to {endOffset} of{" "}
+          Products from {itemOffset + 1} to{" "}
+          {endOffset > products.length ? products.length : endOffset} of{" "}
           {products.length}
         </p>
       </div>

@@ -13,7 +13,7 @@ const Shop = () => {
     dispatch(getAllProducts());
   }, []);
 
-  const [selectedConf, setSelectedConf] = useState("nma gap");
+  const [selectedConf, setSelectedConf] = useState("products");
   const confItem = async (item) => {
     setSelectedConf(item);
   };
