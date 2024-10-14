@@ -9,7 +9,9 @@ import { paginationItems } from "../../../constants";
 import { getCategories } from "../../../redux/orebiSlice";
 
 const HeaderBottom = () => {
-  const { saved, categories } = useSelector((state) => state.orebiReducer);
+  const { saved, categories, products } = useSelector(
+    (state) => state.orebiReducer
+  );
   const [show, setShow] = useState(false);
   const [showUser, setShowUser] = useState(false);
   const navigate = useNavigate();
@@ -48,11 +50,11 @@ const HeaderBottom = () => {
   };
 
   useEffect(() => {
-    const filtered = paginationItems.filter((item) =>
-      item.productName.toLowerCase().includes(searchQuery.toLowerCase())
+    const filtered = products.filter((item) =>
+      item.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
     setFilteredProducts(filtered);
-  }, [searchQuery]);
+  }, [products, searchQuery]);
 
   return (
     <div className="w-full bg-[#F5F5F3] relative">
@@ -104,7 +106,7 @@ const HeaderBottom = () => {
             <FaSearch className="w-5 h-5" />
             {searchQuery && (
               <div
-                className={`w-full mx-auto h-96 bg-white top-16 absolute left-0 z-50 overflow-y-scroll shadow-2xl scrollbar-hide cursor-pointer`}
+                className={`w-full mx-auto h-96 bg-white top-16 absolute left-0 z-50 overflow-y-scroll shadow-2xl scrollbar-hide cursor-pointer flex flex-col gap-2`}
               >
                 {searchQuery &&
                   filteredProducts.map((item) => (
@@ -124,19 +126,22 @@ const HeaderBottom = () => {
                         setShowSearchBar(true) &
                         setSearchQuery("")
                       }
-                      key={item._id}
-                      className="max-w-[600px] h-28 bg-gray-100 mb-3 flex items-center gap-3"
+                      key={item.id}
+                      className="max-w-[650px] h-auto p-2 flex items-start gap-4"
                     >
-                      <img className="w-24" src={item.img} alt="productImg" />
+                      <div className="w-[100px] h-[100px]">
+                        <img
+                          className="w-[100px] max-h-[100px] object-contain object-center"
+                          src={item.images[0].image}
+                          alt="productImg"
+                        />
+                      </div>
                       <div className="flex flex-col gap-1">
-                        <p className="font-semibold text-lg">
-                          {item.productName}
-                        </p>
-                        <p className="text-xs">{item.des}</p>
+                        <p className="font-semibold text-lg">{item.name}</p>
                         <p className="text-sm">
                           Цена:{" "}
                           <span className="text-primeColor font-semibold">
-                            ${item.price}
+                            {item.price} сумов
                           </span>
                         </p>
                       </div>

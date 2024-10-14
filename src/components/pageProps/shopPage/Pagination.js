@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
 import Product from "../../home/Products/Product";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 function Items({ currentItems }) {
   return (
@@ -28,6 +29,7 @@ function Items({ currentItems }) {
 
 const Pagination = ({ itemsPerPage }) => {
   const products = useSelector((state) => state.orebiReducer.products);
+  const location = useLocation();
 
   const [itemOffset, setItemOffset] = useState(0);
 

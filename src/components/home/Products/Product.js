@@ -46,7 +46,7 @@ const Product = (props) => {
           </div>
         ) : (
           <>
-            <div className="pt-3">
+            <div className="pt-3 h-80">
               <img
                 className="max-w-80 max-h-80 mx-auto"
                 src={props.img[0].image}
