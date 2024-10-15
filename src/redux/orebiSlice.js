@@ -1,19 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import {
-  spfOne,
-  spfTwo,
-  spfThree,
-  spfFour,
-  bestSellerOne,
-  bestSellerTwo,
-  bestSellerThree,
-  bestSellerFour,
-  newArrOne,
-  newArrTwo,
-  newArrThree,
-  newArrFour,
-} from "../assets/images/index";
 
 const initialState = {
   userInfo: [],

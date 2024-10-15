@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import Product from "../../home/Products/Product";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import useQuery from "../../../hooks/useQuery";
 
 function Items({ currentItems }) {
   return (
@@ -27,21 +27,45 @@ function Items({ currentItems }) {
   );
 }
 
-const Pagination = ({ itemsPerPage }) => {
-  const products = useSelector((state) => state.orebiReducer.products);
-  const location = useLocation();
-
+const Pagination = ({ itemsPerPage, conf }) => {
+  const id = useQuery("category");
+  const state = useSelector((state) => state.orebiReducer);
+  const [finalProducts, setFinalProducts] = useState(state[conf]);
   const [itemOffset, setItemOffset] = useState(0);
 
-  const endOffset = itemOffset + itemsPerPage;
-  const currentItems = products.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(products.length / itemsPerPage);
+  // Filter products based on selected category
+  useEffect(() => {
+    if (id) {
+      const filteredProducts = state[conf].filter(
+        (product) => product.category.id.toString() === id.toString()
+      );
+      setFinalProducts(filteredProducts);
+    } else {
+      setFinalProducts(state[conf]); // Reset to all products if no category is selected
+    }
+    // Reset pagination offset when the product list changes
+    setItemOffset(0);
+  }, [id, conf, state]);
 
-  // Invoke when user clicks to request another page.
+  // Calculate current items for pagination
+  const endOffset = itemOffset + itemsPerPage;
+  const currentItems = finalProducts.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(finalProducts.length / itemsPerPage);
+
+  // Handle page changes
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % products.length;
+    const newOffset = (event.selected * itemsPerPage) % finalProducts.length;
     setItemOffset(newOffset);
   };
+
+  // Handle empty or loading state
+  if (!finalProducts) {
+    return <p>Загрузка товаров....</p>;
+  }
+
+  if (finalProducts.length === 0) {
+    return <p>Товары не найдены.</p>;
+  }
 
   return (
     <div>
@@ -63,8 +87,8 @@ const Pagination = ({ itemsPerPage }) => {
         />
         <p className="text-base font-normal text-lightText">
           Products from {itemOffset + 1} to{" "}
-          {endOffset > products.length ? products.length : endOffset} of{" "}
-          {products.length}
+          {endOffset > finalProducts.length ? finalProducts.length : endOffset}{" "}
+          of {finalProducts.length}
         </p>
       </div>
     </div>

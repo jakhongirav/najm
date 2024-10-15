@@ -36,7 +36,7 @@ const Shop = () => {
             itemsPerPageFromBanner={itemsPerPageFromBanner}
             confItem={confItem}
           />
-          <Pagination itemsPerPage={itemsPerPage} />
+          <Pagination itemsPerPage={itemsPerPage} conf={selectedConf} />
         </div>
       </div>
       {/* ================= Products End here ===================== */}

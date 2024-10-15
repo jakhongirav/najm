@@ -21,7 +21,7 @@ const Sale = () => {
         </CardHeader>
         <CardContent className="z-10">
           <Link
-            to={"/"}
+            to={"/shop/category"}
             className={cn(buttonVariants("default"), `rounded-none`)}
           >
             Перейти

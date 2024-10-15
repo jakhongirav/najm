@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useRef, useState } from "react";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import { motion } from "framer-motion";
 import Image from "../../designLayouts/Image";
 import {
   homeIcon,
@@ -14,18 +12,16 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "../../ui/dialog";
-import { Button } from "../../ui/button";
+import useQuery from "../../../hooks/useQuery";
 
 export default function FooterNav() {
   const categories = useSelector((state) => state.orebiReducer.categories);
-  const ref = useRef();
-  const [show, setShow] = useState(false);
+  const selectedCategoryId = useQuery("category"); // Getting the selected category from query params
+  const isCategorySelected = (id) => selectedCategoryId === id.toString(); // Compare category IDs as strings
 
   return (
     <div className="w-[99%] md:hidden mx-auto fixed bottom-0 right-0 left-0 bg-white rounded-t-lg z-50">
@@ -42,38 +38,8 @@ export default function FooterNav() {
         <Link to="/signin">
           <Image imgSrc={profileCircle} className="w-[30px] h-[30px]" />
         </Link>
-        {/* <div
-          onClick={() => setShow(!show)}
-          ref={ref}
-          className="flex h-14 cursor-pointer items-center gap-2 text-primeColor"
-        >
-          <HiOutlineMenuAlt4 className="w-[30px] h-[30px]" />
 
-          {show && (
-            <motion.ul
-              initial={{ x: 20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              className="absolute w-[50%] right-0 h-max z-40 bg-white border text-[#767676] p-4"
-            >
-              {categories.map((category) => {
-                return (
-                  <li
-                    key={category.id}
-                    className="text-black px-4 py-1 border-b-[1px] border-b-gray-400  hover:border-b-gray-500 hover:text-gray-500 duration-300 cursor-pointer"
-                  >
-                    <Link
-                      key={category.id}
-                      to={`/shop?category=${category.id}`}
-                    >
-                      {category.name}
-                    </Link>
-                  </li>
-                );
-              })}
-            </motion.ul>
-          )}
-        </div> */}
+        {/* Category Menu */}
         <Sheet>
           <SheetTrigger asChild>
             <HiOutlineMenuAlt4 className="w-[30px] h-[30px]" />
@@ -81,17 +47,28 @@ export default function FooterNav() {
           <SheetContent>
             <SheetHeader>
               <SheetTitle>Категории</SheetTitle>
-              {categories.map((category) => {
-                return (
-                  <Link
-                    key={category.id}
-                    className="text-black font-normal text-base px-4 py-1 border-b-[1px] border-b-gray-400  hover:border-b-gray-500 hover:text-gray-500 duration-300 cursor-pointer"
-                    to={`/shop?category=${category.id}`}
-                  >
-                    {category.name}
-                  </Link>
-                );
-              })}
+              <div className="w-full flex flex-col items-start gap-3">
+                {categories.map((category) => {
+                  return (
+                    <SheetClose asChild key={category.id}>
+                      <Link
+                        to={
+                          isCategorySelected(category.id)
+                            ? "/shop"
+                            : `/shop?category=${category.id}`
+                        }
+                        className={`${
+                          isCategorySelected(category.id)
+                            ? "text-primeColor font-bold"
+                            : "text-black font-normal"
+                        } w-full text-base px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-gray-500 hover:text-gray-500 duration-300 cursor-pointer`}
+                      >
+                        {category.name}
+                      </Link>
+                    </SheetClose>
+                  );
+                })}
+              </div>
             </SheetHeader>
           </SheetContent>
         </Sheet>

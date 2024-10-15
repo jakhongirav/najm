@@ -46,19 +46,19 @@ const Product = (props) => {
           </div>
         ) : (
           <>
-            <div className="pt-3 h-80">
+            <div className="pt-3 h-60 flex justify-center overflow-hidden">
               <img
-                className="max-w-80 max-h-80 mx-auto"
+                className="max-w-80 max-h-60 mx-auto my-auto"
                 src={props.img[0].image}
                 alt="najm product"
               />
             </div>
             <div className="p-4">
               <div className="font-titleFont pb-4">
-                <h2 className="text-lg text-primeColor font-bold pb-2">
+                <h2 className="text-lg text-primeColor font-bold line-clamp-2">
                   {props.product_name}
                 </h2>
-                <p className="text-[#767676] text-[14px] font-bold">
+                <p className="text-[#767676] text-[14px] font-bold mt-2">
                   {props.price} сумов
                 </p>
               </div>
