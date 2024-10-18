@@ -29,7 +29,7 @@ const ProductInfo = ({ productInfo }) => {
     dispatch(
       addToSaved({
         _id: productInfo.id,
-        name: productInfo.productName,
+        name: productInfo.product_name,
         quantity: 1,
         image: productInfo.img,
         badge: productInfo.badge,
@@ -51,7 +51,7 @@ const ProductInfo = ({ productInfo }) => {
     dispatch(
       addToCart({
         _id: productInfo.id,
-        name: productInfo.productName,
+        name: productInfo.product_name,
         quantity: 1,
         image: productInfo.img,
         badge: productInfo.badge,
@@ -70,10 +70,12 @@ const ProductInfo = ({ productInfo }) => {
     );
   }
 
+  console.log(productInfo);
+
   return (
     <div className="w-full flex flex-col gap-5">
       <h2 className="text-3xl md:text-4xl font-semibold">
-        {productInfo.productName}
+        {productInfo.product_name}
       </h2>
       <p className="text-xl font-semibold">{productInfo.price} сумов</p>
       <p className="text-base text-gray-600">

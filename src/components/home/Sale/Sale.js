@@ -9,17 +9,20 @@ const Sale = () => {
   return (
     <div className="my-20 w-full mx-auto grid grid-rows-3 md:grid-rows-1 md:grid-cols-2 gap-4">
       <Card
-        className="relative md:col-span-1 row-span-1 md:row-auto after:absolute after:w-full after:h-full after:top-0 after:bg-black after:rounded-xl after:opacity-[50%] after:z-0"
+        className="relative md:col-span-1 row-span-1 md:row-auto"
         style={{
           backgroundImage: `url(${cardbg})`,
-          background: "contain",
+          backgroundSize: "cover",
           backgroundPosition: "bottom",
         }}
       >
-        <CardHeader className="z-10">
+        {/* Semi-transparent black overlay */}
+        <div className="absolute inset-0 bg-black opacity-50 rounded-xl"></div>
+
+        <CardHeader className="relative z-10">
           <CardTitle className="text-2xl text-[#fff]">Ежедневники</CardTitle>
         </CardHeader>
-        <CardContent className="z-10">
+        <CardContent className="relative z-10">
           <Link
             to={"/shop/category"}
             className={cn(buttonVariants("default"), `rounded-none`)}
@@ -28,23 +31,25 @@ const Sale = () => {
           </Link>
         </CardContent>
       </Card>
+
       <div className="md:col-span-1 row-span-2 md:row-auto flex flex-col gap-4 md:gap-2">
         <Card
-          className="bg-black"
+          className="relative"
           style={{
             backgroundImage: `url(${cardbg2})`,
-            background: "contain",
-            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundPosition: "bottom",
           }}
         >
-          <CardHeader>
-            <CardTitle className="text-2xl text-[#fff]">
-              Ручки и карандаши
-            </CardTitle>
+          {/* Semi-transparent black overlay */}
+          <div className="absolute inset-0 bg-black opacity-50 rounded-xl"></div>
+
+          <CardHeader className="relative z-10">
+            <CardTitle className="text-2xl text-[#fff]">Ежедневники</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="relative z-10">
             <Link
-              to={"/"}
+              to={"/shop/category"}
               className={cn(buttonVariants("default"), `rounded-none`)}
             >
               Перейти
@@ -52,19 +57,22 @@ const Sale = () => {
           </CardContent>
         </Card>
         <Card
-          className="bg-black"
+          className="relative"
           style={{
             backgroundImage: `url(${cardbg3})`,
-            background: "contain",
-            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundPosition: "bottom",
           }}
         >
-          <CardHeader>
-            <CardTitle className="text-2xl text-[#fff]">Тетради</CardTitle>
+          {/* Semi-transparent black overlay */}
+          <div className="absolute inset-0 bg-black opacity-50 rounded-xl"></div>
+
+          <CardHeader className="relative z-10">
+            <CardTitle className="text-2xl text-[#fff]">Ежедневники</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="relative z-10">
             <Link
-              to={"/"}
+              to={"/shop/category"}
               className={cn(buttonVariants("default"), `rounded-none`)}
             >
               Перейти
