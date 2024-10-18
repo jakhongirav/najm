@@ -20,11 +20,11 @@ const Sale = () => {
         <div className="absolute inset-0 bg-black opacity-50 rounded-xl"></div>
 
         <CardHeader className="relative z-10">
-          <CardTitle className="text-2xl text-[#fff]">Ежедневники</CardTitle>
+          <CardTitle className="text-2xl text-[#fff]">Карандаши</CardTitle>
         </CardHeader>
         <CardContent className="relative z-10">
           <Link
-            to={"/shop/category"}
+            to={"/shop?category=9"}
             className={cn(buttonVariants("default"), `rounded-none`)}
           >
             Перейти
@@ -45,11 +45,11 @@ const Sale = () => {
           <div className="absolute inset-0 bg-black opacity-50 rounded-xl"></div>
 
           <CardHeader className="relative z-10">
-            <CardTitle className="text-2xl text-[#fff]">Ежедневники</CardTitle>
+            <CardTitle className="text-2xl text-[#fff]">Тетради</CardTitle>
           </CardHeader>
           <CardContent className="relative z-10">
             <Link
-              to={"/shop/category"}
+              to={"/shop?category=6"}
               className={cn(buttonVariants("default"), `rounded-none`)}
             >
               Перейти
@@ -68,11 +68,11 @@ const Sale = () => {
           <div className="absolute inset-0 bg-black opacity-50 rounded-xl"></div>
 
           <CardHeader className="relative z-10">
-            <CardTitle className="text-2xl text-[#fff]">Ежедневники</CardTitle>
+            <CardTitle className="text-2xl text-[#fff]">Блокноты</CardTitle>
           </CardHeader>
           <CardContent className="relative z-10">
             <Link
-              to={"/shop/category"}
+              to={"/shop?category=2"}
               className={cn(buttonVariants("default"), `rounded-none`)}
             >
               Перейти
