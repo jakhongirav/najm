@@ -107,7 +107,7 @@ const Product = (props) => {
                         addToSaved({
                           id: props.id,
                           images: props.images,
-                          name: props.name,
+                          name: props.product_name,
                           description: props.des,
                           price: props.price,
                           slug: props.slug,

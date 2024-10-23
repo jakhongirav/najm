@@ -29,6 +29,8 @@ const Cart = () => {
       setShippingCharge(20);
     }
   }, [totalAmt]);
+
+  // console.log(saved);
   return (
     <div className="container mx-auto">
       <Breadcrumbs title="Корзина" />

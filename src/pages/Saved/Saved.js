@@ -10,7 +10,6 @@ import SavedItem from "./SavedItem";
 const Saved = () => {
   const dispatch = useDispatch();
   const liked = useSelector((state) => state.orebiReducer.liked);
-  console.log(liked);
 
   return (
     <div className="container mx-auto">
@@ -25,7 +24,7 @@ const Saved = () => {
           </div>
           <div className="mt-5">
             {liked.map((item) => (
-              <div key={item._id}>
+              <div key={item.id}>
                 <SavedItem item={item} />
               </div>
             ))}
