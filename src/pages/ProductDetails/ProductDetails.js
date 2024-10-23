@@ -23,13 +23,13 @@ const ProductDetails = () => {
       const product = location.state.item;
       setProductInfo(product);
       setPrevLocation(location.pathname);
-      if (product.img && product.img.length > 0) {
-        setCurrentImage(product.img[0]);
+      if (product.images && product.images.length > 0) {
+        setCurrentImage(product.images[0]);
       }
     }
   }, [location]);
 
-  const images = productInfo?.img;
+  const images = productInfo?.images;
 
   const setImage = (id) => {
     if (images) {
@@ -49,7 +49,6 @@ const ProductDetails = () => {
       </div>
     ); // Fallback for when productInfo is not yet available
   }
-
   return (
     <div className="w-full my-5 mx-auto border-b-gray-300">
       <div className="mx-auto">

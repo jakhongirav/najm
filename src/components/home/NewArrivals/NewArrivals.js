@@ -65,7 +65,7 @@ const NewArrivals = () => {
           <div className="px-2" key={product.id}>
             <Product
               id={product.id}
-              img={product.images}
+              images={product.images}
               product_name={product.name}
               price={product.price}
               badge={true}

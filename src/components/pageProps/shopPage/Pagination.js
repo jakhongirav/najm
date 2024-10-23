@@ -13,7 +13,7 @@ function Items({ currentItems }) {
             <Product
               category={item.category}
               id={item.id}
-              img={item.images}
+              images={item.images}
               product_name={item.name}
               price={item.price}
               des={item.description}

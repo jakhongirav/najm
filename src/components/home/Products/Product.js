@@ -12,7 +12,6 @@ import { Skeleton } from "../../ui/skeleton";
 const Product = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   // Local state to handle loading status
   const [isLoading, setIsLoading] = useState(true);
 
@@ -47,11 +46,15 @@ const Product = (props) => {
         ) : (
           <>
             <div className="pt-3 h-60 flex justify-center overflow-hidden">
-              <img
-                className="max-w-80 max-h-60 mx-auto my-auto"
-                src={props.img[0].image}
-                alt="najm product"
-              />
+              {props.images?.length > 0 ? (
+                <img
+                  className="max-w-80 max-h-60 mx-auto my-auto"
+                  src={props.images[0].image}
+                  alt="najm product"
+                />
+              ) : (
+                <Skeleton className="max-w-80 max-h-60 mx-auto my-auto" />
+              )}
             </div>
             <div className="p-4">
               <div className="font-titleFont pb-4">
@@ -78,7 +81,7 @@ const Product = (props) => {
                       dispatch(
                         addToCart({
                           id: props.id,
-                          images: props.img,
+                          images: props.images,
                           name: props.name,
                           description: props.des,
                           price: props.price,
@@ -103,7 +106,7 @@ const Product = (props) => {
                       dispatch(
                         addToSaved({
                           id: props.id,
-                          images: props.img,
+                          images: props.images,
                           name: props.name,
                           description: props.des,
                           price: props.price,

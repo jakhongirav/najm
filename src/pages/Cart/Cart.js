@@ -7,7 +7,6 @@ import { resetCart } from "../../redux/orebiSlice";
 import { emptyCart } from "../../assets/images/index";
 import ItemCard from "./ItemCard";
 
-// Just for commit
 const Cart = () => {
   const dispatch = useDispatch();
   const saved = useSelector((state) => state.orebiReducer.saved);

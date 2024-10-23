@@ -11,7 +11,7 @@ const SavedItem = ({ item }) => {
     <div className="w-full flex flex-col mb-4 border py-2 gap-3">
       <div className="flex col-span-5 mdl:col-span-2 items-center gap-4 ml-4">
         <ImCross
-          onClick={() => dispatch(deleteSaved(item._id))}
+          onClick={() => dispatch(deleteSaved(item.id))}
           className="text-primeColor hover:text-red-500 duration-300 cursor-pointer"
         />
         <img className="w-32 h-32" src={item.image} alt="productImage" />
@@ -29,10 +29,10 @@ const SavedItem = ({ item }) => {
         onClick={() => {
           dispatch(
             addToCart({
-              _id: item._id,
+              id: item.id,
               name: item.productName,
               quantity: 1,
-              image: item.img,
+              images: item.images,
               badge: item.badge,
               price: item.price,
               colors: item.color,
