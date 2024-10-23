@@ -64,19 +64,19 @@ const Cart = () => {
                 <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
                   Цена
                   <span className="font-semibold tracking-wide font-titleFont">
-                    ${totalAmt}
+                    {totalAmt} сумов
                   </span>
                 </p>
                 <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
                   Стоимость доставки
                   <span className="font-semibold tracking-wide font-titleFont">
-                    ${shippingCharge}
+                    {shippingCharge} сумов
                   </span>
                 </p>
                 <p className="flex items-center justify-between border-[1px] border-gray-400 py-1.5 text-lg px-4 font-medium">
                   Итоговая цена
                   <span className="font-bold tracking-wide text-lg font-titleFont">
-                    ${totalAmt + shippingCharge}
+                    {totalAmt + shippingCharge} сумов
                   </span>
                 </p>
               </div>
