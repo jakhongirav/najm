@@ -35,7 +35,7 @@ export const orebiSlice = createSlice({
     //--------------- Cart Actions -----------------
     addToCart: (state, action) => {
       const itemInSaved = state.saved.find(
-        (savedItem) => savedItem._id === action.payload._id
+        (savedItem) => savedItem.id === action.payload.id
       );
 
       if (itemInSaved) {
@@ -49,13 +49,13 @@ export const orebiSlice = createSlice({
       }
     },
     increaseQuantity: (state, action) => {
-      const item = state.saved.find((item) => item._id === action.payload._id);
+      const item = state.saved.find((item) => item.id === action.payload.id);
       if (item) {
         item.quantity++;
       }
     },
     drecreaseQuantity: (state, action) => {
-      const item = state.saved.find((item) => item._id === action.payload._id);
+      const item = state.saved.find((item) => item.id === action.payload.id);
       if (item.quantity === 1) {
         item.quantity = 1;
       } else {
@@ -63,7 +63,7 @@ export const orebiSlice = createSlice({
       }
     },
     deleteItem: (state, action) => {
-      state.saved = state.saved.filter((item) => item._id !== action.payload);
+      state.saved = state.saved.filter((item) => item.id !== action.payload);
     },
     resetCart: (state) => {
       state.saved = [];
@@ -71,7 +71,7 @@ export const orebiSlice = createSlice({
     //--------------- Saved Actions -----------------
     addToSaved: (state, action) => {
       const itemInSaved = state.liked.find(
-        (savedItem) => savedItem._id === action.payload._id
+        (savedItem) => savedItem.id === action.payload.id
       );
 
       if (!itemInSaved) {
@@ -81,7 +81,7 @@ export const orebiSlice = createSlice({
       }
     },
     deleteSaved: (state, action) => {
-      state.liked = state.liked.filter((item) => item._id !== action.payload);
+      state.liked = state.liked.filter((item) => item.id !== action.payload);
     },
     resetSaved: (state) => {
       state.liked = [];
@@ -111,7 +111,7 @@ export function getAllProducts() {
   return async function (dispatch) {
     try {
       await axios
-        .get("http://38.242.226.165/products/all-products/")
+        .get("https://api.najm.uz/products/all-products/")
         .then((res) => {
           dispatch(orebiSlice.actions.getAllProductsSuccess(res.data));
         });
@@ -125,7 +125,7 @@ export function getCategories() {
   return async function (dispatch) {
     try {
       await axios
-        .get("http://38.242.226.165/products/categories/")
+        .get("https://api.najm.uz/products/categories/")
         .then((res) => {
           dispatch(orebiSlice.actions.getCategoriesSuccess(res.data));
         });
@@ -139,7 +139,7 @@ export function getNewArrivals() {
   return async function (dispatch) {
     try {
       await axios
-        .get("http://38.242.226.165/products/new-products/")
+        .get("https://api.najm.uz/products/new-products/")
         .then((res) => {
           dispatch(orebiSlice.actions.getNewArrivalsSuccess(res.data));
         });
@@ -153,7 +153,7 @@ export function getBestSellers() {
   return async function (dispatch) {
     try {
       await axios
-        .get("http://38.242.226.165/products/best-sellers/")
+        .get("https://api.najm.uz/products/best-sellers/")
         .then((res) => {
           dispatch(orebiSlice.actions.getBestSellersSuccess(res.data));
         });

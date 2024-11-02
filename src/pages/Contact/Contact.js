@@ -10,12 +10,12 @@ const Contact = () => {
   }, [location]);
 
   const [clientName, setclientName] = useState("");
-  const [email, setEmail] = useState("");
+  const [number, setNumber] = useState("");
   const [messages, setMessages] = useState("");
 
   // ========== Error Messages Start here ============
   const [errClientName, setErrClientName] = useState("");
-  const [errEmail, setErrEmail] = useState("");
+  const [errNumber, setErrNumber] = useState("");
   const [errMessages, setErrMessages] = useState("");
   // ========== Error Messages End here ==============
   const [successMsg, setSuccessMsg] = useState("");
@@ -24,68 +24,64 @@ const Contact = () => {
     setclientName(e.target.value);
     setErrClientName("");
   };
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-    setErrEmail("");
+  const handlePhoneNumber = (e) => {
+    setNumber(e.target.value);
+    setErrNumber("");
   };
   const handleMessages = (e) => {
     setMessages(e.target.value);
     setErrMessages("");
   };
 
-  // ================= Email Validation start here =============
-  const EmailValidation = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i);
+  // ================= Phone Number Validation start here =============
+  const PhoneNumberValidation = (phoneNumber) => {
+    return String(phoneNumber).match(/^(\+998)?\s?(9[0-9])\s?\d{3}\s?\d{4}$/);
   };
-  // ================= Email Validation End here ===============
+  // ================= Phone Number Validation End here ===============
 
   const handlePost = (e) => {
     e.preventDefault();
     if (!clientName) {
-      setErrClientName("Enter your Name");
+      setErrClientName("Введите ваше имя");
     }
-    if (!email) {
-      setErrEmail("Enter your Email");
+    if (!number) {
+      setErrNumber("Введите ваш номер телефона");
     } else {
-      if (!EmailValidation(email)) {
-        setErrEmail("Enter a Valid Email");
+      if (!PhoneNumberValidation(number)) {
+        setErrNumber("Введите корректный номер телефона");
       }
     }
     if (!messages) {
-      setErrMessages("Enter your Messages");
+      setErrMessages("Введите ваше сообщение");
     }
-    if (clientName && email && EmailValidation(email) && messages) {
+    if (clientName && number && PhoneNumberValidation(number) && messages) {
       setSuccessMsg(
-        `Thank you dear ${clientName}, Your messages has been received successfully. Futher details will sent to you by your email at ${email}.`
+        `Спасибо, уважаемый ${clientName}, ваше сообщение было успешно получено. Дополнительная информация будет отправлена вам по указанному номеру телефона: ${number}.`
       );
     }
   };
 
-  // translate, add socials, address and contact info.
-
   return (
     <div className="container mx-auto">
-      <Breadcrumbs title="Contact" prevLocation={prevLocation} />
+      <Breadcrumbs title="Контакт" prevLocation={prevLocation} />
       {successMsg ? (
         <p className="pb-20 w-96 font-medium text-green-500">{successMsg}</p>
       ) : (
         <form className="pb-20">
           <h1 className="font-titleFont font-semibold text-3xl">
-            Fill up a Form
+            Заполните форму
           </h1>
           <div className="w-[500px] h-auto py-6 flex flex-col gap-6">
             <div>
               <p className="text-base font-titleFont font-semibold px-2">
-                Name
+                Имя
               </p>
               <input
                 onChange={handleName}
                 value={clientName}
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
                 type="text"
-                placeholder="Enter your name here"
+                placeholder="Введите ваше имя здесь"
               />
               {errClientName && (
                 <p className="text-red-500 text-sm font-titleFont font-semibold mt-1 px-2 flex items-center gap-1">
@@ -99,22 +95,22 @@ const Contact = () => {
                 Телефон
               </p>
               <input
-                onChange={handleEmail}
-                value={email}
+                onChange={handlePhoneNumber}
+                value={number}
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor"
-                type="number"
-                placeholder="Enter your name here"
+                type="text"
+                placeholder="Введите ваш номер телефона здесь"
               />
-              {errEmail && (
+              {errNumber && (
                 <p className="text-red-500 text-sm font-titleFont font-semibold mt-1 px-2 flex items-center gap-1">
                   <span className="text-sm italic font-bold">!</span>
-                  {errEmail}
+                  {errNumber}
                 </p>
               )}
             </div>
             <div>
               <p className="text-base font-titleFont font-semibold px-2">
-                Messages
+                Сообщение
               </p>
               <textarea
                 onChange={handleMessages}
@@ -123,7 +119,7 @@ const Contact = () => {
                 rows="3"
                 className="w-full py-1 border-b-2 px-2 text-base font-medium placeholder:font-normal placeholder:text-sm outline-none focus-within:border-primeColor resize-none"
                 type="text"
-                placeholder="Enter your name here"
+                placeholder="Введите ваше сообщение здесь"
               ></textarea>
               {errMessages && (
                 <p className="text-red-500 text-sm font-titleFont font-semibold mt-1 px-2 flex items-center gap-1">
@@ -136,7 +132,7 @@ const Contact = () => {
               onClick={handlePost}
               className="w-44 bg-primeColor text-gray-200 h-10 font-titleFont text-base tracking-wide font-semibold hover:bg-black hover:text-white duration-200"
             >
-              Post
+              Отправить
             </button>
           </div>
         </form>
