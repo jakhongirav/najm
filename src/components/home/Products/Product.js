@@ -32,6 +32,23 @@ const Product = (props) => {
     });
   };
 
+  const formatPrice = (price) => {
+    const priceStr = String(price);
+    const length = priceStr.length;
+  
+    if (length === 4) {
+      // 4 digits: space after the first digit
+      return `${priceStr[0]} ${priceStr.slice(1)}`;
+    } else if (length === 5) {
+      // 5 digits: space after the second digit
+      return `${priceStr.slice(0, 2)} ${priceStr.slice(2)}`;
+    } else if (length === 6) {
+      // 6 digits: space after the third digit
+      return `${priceStr.slice(0, 3)} ${priceStr.slice(3)}`;
+    }
+    return priceStr; // Return as-is if length is different
+  };
+
   return (
     <>
       <Card className="w-full relative py-2 p-0" {...props}>
@@ -62,7 +79,7 @@ const Product = (props) => {
                   {props.product_name}
                 </h2>
                 <p className="text-[#767676] text-[14px] font-bold mt-2">
-                  {props.price} сумов
+                {formatPrice(props.price)} сумов
                 </p>
               </div>
               <Button
