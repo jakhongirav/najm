@@ -14,7 +14,6 @@ const Product = (props) => {
   const navigate = useNavigate();
   // Local state to handle loading status
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     if (props.id) {
       setIsLoading(false);
