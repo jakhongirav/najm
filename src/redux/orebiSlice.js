@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// Create an Axios instance with default configurations
+const api = axios.create({
+  baseURL: "https://api.najm.uz/products",
+  withCredentials: true, // Automatically includes credentials with each request
+});
+
 const initialState = {
   userInfo: [],
   products: [],
@@ -17,20 +23,16 @@ export const orebiSlice = createSlice({
   reducers: {
     //--------------- Product Actions -----------------
     getNewArrivalsSuccess: (state, action) => {
-      const newArrivals = action.payload;
-      state.newArrivals = newArrivals;
+      state.newArrivals = action.payload;
     },
     getCategoriesSuccess: (state, action) => {
-      const categories = action.payload;
-      state.categories = categories;
+      state.categories = action.payload;
     },
     getAllProductsSuccess: (state, action) => {
-      const products = action.payload;
-      state.products = products;
+      state.products = action.payload;
     },
     getBestSellersSuccess: (state, action) => {
-      const bestSellers = action.payload;
-      state.bestSellers = bestSellers;
+      state.bestSellers = action.payload;
     },
     //--------------- Cart Actions -----------------
     addToCart: (state, action) => {
@@ -41,7 +43,6 @@ export const orebiSlice = createSlice({
       if (itemInSaved) {
         itemInSaved.quantity += action.payload.quantity;
       } else {
-        // Adding a new item to the saved array, including quantity
         state.saved.push({
           ...action.payload,
           quantity: action.payload.quantity,
@@ -54,11 +55,9 @@ export const orebiSlice = createSlice({
         item.quantity++;
       }
     },
-    drecreaseQuantity: (state, action) => {
+    decreaseQuantity: (state, action) => {
       const item = state.saved.find((item) => item.id === action.payload.id);
-      if (item.quantity === 1) {
-        item.quantity = 1;
-      } else {
+      if (item.quantity > 1) {
         item.quantity--;
       }
     },
@@ -90,75 +89,53 @@ export const orebiSlice = createSlice({
 });
 
 export const {
-  // Cart actions
   addToCart,
   increaseQuantity,
-  drecreaseQuantity,
+  decreaseQuantity,
   deleteItem,
   resetCart,
-  // Product actions
   getCategoriesSuccess,
   getAllProductsSuccess,
   getBestSellersSuccess,
-  // Saved actions
   addToSaved,
   deleteSaved,
   resetSaved,
 } = orebiSlice.actions;
 export default orebiSlice.reducer;
 
-export function getAllProducts() {
-  return async function (dispatch) {
-    try {
-      await axios
-        .get("https://api.najm.uz/products/all-products/")
-        .then((res) => {
-          dispatch(orebiSlice.actions.getAllProductsSuccess(res.data));
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-}
+// Async actions to fetch data
+export const getAllProducts = () => async (dispatch) => {
+  try {
+    const res = await api.get("/all-products/");
+    dispatch(getAllProductsSuccess(res.data));
+  } catch (err) {
+    console.error("Error fetching all products:", err);
+  }
+};
 
-export function getCategories() {
-  return async function (dispatch) {
-    try {
-      await axios
-        .get("https://api.najm.uz/products/categories/")
-        .then((res) => {
-          dispatch(orebiSlice.actions.getCategoriesSuccess(res.data));
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-}
+export const getCategories = () => async (dispatch) => {
+  try {
+    const res = await api.get("/categories/");
+    dispatch(getCategoriesSuccess(res.data));
+  } catch (err) {
+    console.error("Error fetching categories:", err);
+  }
+};
 
-export function getNewArrivals() {
-  return async function (dispatch) {
-    try {
-      await axios
-        .get("https://api.najm.uz/products/new-products/")
-        .then((res) => {
-          dispatch(orebiSlice.actions.getNewArrivalsSuccess(res.data));
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-}
+export const getNewArrivals = () => async (dispatch) => {
+  try {
+    const res = await api.get("/new-products/");
+    dispatch(getNewArrivalsSuccess(res.data));
+  } catch (err) {
+    console.error("Error fetching new arrivals:", err);
+  }
+};
 
-export function getBestSellers() {
-  return async function (dispatch) {
-    try {
-      await axios
-        .get("https://api.najm.uz/products/best-sellers/")
-        .then((res) => {
-          dispatch(orebiSlice.actions.getBestSellersSuccess(res.data));
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-}
+export const getBestSellers = () => async (dispatch) => {
+  try {
+    const res = await api.get("/best-sellers/");
+    dispatch(getBestSellersSuccess(res.data));
+  } catch (err) {
+    console.error("Error fetching best sellers:", err);
+  }
+};
