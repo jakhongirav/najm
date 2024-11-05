@@ -16,8 +16,6 @@ const ProductInfo = ({ productInfo }) => {
     }
   }, [productInfo]);
 
-  console.log(productInfo);
-
   const handleSave = () => {
     if (!defaultColor) {
       toast({

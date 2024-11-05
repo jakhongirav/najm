@@ -7,7 +7,6 @@ import { Skeleton } from "../../components/ui/skeleton";
 
 const SavedItem = ({ item }) => {
   const dispatch = useDispatch();
-  console.log(item);
 
   return (
     <div className="w-full flex flex-col mb-4 border py-2 gap-3">

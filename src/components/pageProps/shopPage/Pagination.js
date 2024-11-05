@@ -67,8 +67,6 @@ const Pagination = ({ itemsPerPage, conf }) => {
     return <p>Товары не найдены.</p>;
   }
 
-  console.log(currentItems)
-
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 mdl:gap-4 lg:gap-10">

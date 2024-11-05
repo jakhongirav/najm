@@ -34,7 +34,6 @@ const SignUp = () => {
         "http://38.242.226.165/users/register/",
         data
       );
-      console.log(response);
       setSubmitSuccessful(true);
       setSuccessMsg(true);
       // Trigger success toast
