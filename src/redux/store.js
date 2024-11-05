@@ -17,11 +17,10 @@ const persistConfig = {
   version: 1,
   storage,
 };
-
 const persistedReducer = persistReducer(persistConfig, orebiReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer, // Instead of { orebiReducer: persistedReducer }
+  reducer: { orebiReducer: persistedReducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

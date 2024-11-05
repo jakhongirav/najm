@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Create an Axios instance with default configurations
+// Axios instance with base URL and credentials configuration
 const api = axios.create({
   baseURL: "https://api.najm.uz/products",
-  withCredentials: true, // Automatically includes credentials with each request
+  withCredentials: true,
 });
 
 const initialState = {
@@ -74,9 +74,7 @@ export const orebiSlice = createSlice({
       );
 
       if (!itemInSaved) {
-        state.liked.push({
-          ...action.payload,
-        });
+        state.liked.push({ ...action.payload });
       }
     },
     deleteSaved: (state, action) => {
@@ -107,7 +105,7 @@ export default orebiSlice.reducer;
 export const getAllProducts = () => async (dispatch) => {
   try {
     const res = await api.get("/all-products/");
-    dispatch(getAllProductsSuccess(res.data));
+    dispatch(orebiSlice.actions.getAllProductsSuccess(res.data));
   } catch (err) {
     console.error("Error fetching all products:", err);
   }
@@ -116,7 +114,8 @@ export const getAllProducts = () => async (dispatch) => {
 export const getCategories = () => async (dispatch) => {
   try {
     const res = await api.get("/categories/");
-    dispatch(getCategoriesSuccess(res.data));
+    dispatch(orebiSlice.actions.getCategoriesSuccess(res.data));
+
   } catch (err) {
     console.error("Error fetching categories:", err);
   }
@@ -125,7 +124,8 @@ export const getCategories = () => async (dispatch) => {
 export const getNewArrivals = () => async (dispatch) => {
   try {
     const res = await api.get("/new-products/");
-    dispatch(getNewArrivalsSuccess(res.data));
+    dispatch(orebiSlice.actions.getNewArrivalsSuccess(res.data));
+
   } catch (err) {
     console.error("Error fetching new arrivals:", err);
   }
@@ -134,7 +134,7 @@ export const getNewArrivals = () => async (dispatch) => {
 export const getBestSellers = () => async (dispatch) => {
   try {
     const res = await api.get("/best-sellers/");
-    dispatch(getBestSellersSuccess(res.data));
+    dispatch(orebiSlice.actions.getBestSellersSuccess(res.data));
   } catch (err) {
     console.error("Error fetching best sellers:", err);
   }
