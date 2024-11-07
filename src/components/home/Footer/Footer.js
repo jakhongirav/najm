@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="flex flex-col gap-6">
             <ul className="flex items-center gap-2">
               <a
-                href="https://l.instagram.com/?u=https%3A%2F%2Ft.me%2Fnajmstationery&e=AT1jVlZVHCpQIEuV1rWIhvETdPktjR3GncgfIVZ9JYdfzjkbBPbPulWxlOxGHkZb9AdGY8z1QMPwqEENsaHlrMqx5fxyc_N52thTDrk"
+                href="https://t.me/najmstationery"
                 target="_blank"
                 rel="noreferrer"
               >

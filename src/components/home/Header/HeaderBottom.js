@@ -56,6 +56,23 @@ const HeaderBottom = () => {
     setFilteredProducts(filtered);
   }, [products, searchQuery]);
 
+  const formatPrice = (price) => {
+    const priceStr = String(price);
+    const length = priceStr.length;
+
+    if (length === 4) {
+      // 4 digits: space after the first digit
+      return `${priceStr[0]} ${priceStr.slice(1)}`;
+    } else if (length === 5) {
+      // 5 digits: space after the second digit
+      return `${priceStr.slice(0, 2)} ${priceStr.slice(2)}`;
+    } else if (length === 6) {
+      // 6 digits: space after the third digit
+      return `${priceStr.slice(0, 3)} ${priceStr.slice(3)}`;
+    }
+    return priceStr; // Return as-is if length is different
+  };
+
   return (
     <div className="w-full bg-[#F5F5F3] relative">
       <div className="container mx-auto">
@@ -78,17 +95,11 @@ const HeaderBottom = () => {
                   filteredProducts.map((item) => (
                     <div
                       onClick={() =>
-                        navigate(
-                          `/product/${item.productName
-                            .toLowerCase()
-                            .split(" ")
-                            .join("")}`,
-                          {
-                            state: {
-                              item: item,
-                            },
-                          }
-                        ) &
+                        navigate(`/product/${item.id}`, {
+                          state: {
+                            item: item,
+                          },
+                        }) &
                         setShowSearchBar(true) &
                         setSearchQuery("")
                       }
@@ -107,7 +118,7 @@ const HeaderBottom = () => {
                         <p className="text-sm">
                           Цена:{" "}
                           <span className="text-primeColor font-semibold">
-                            {item.price} сумов
+                            {formatPrice(item.price)} сумов
                           </span>
                         </p>
                       </div>

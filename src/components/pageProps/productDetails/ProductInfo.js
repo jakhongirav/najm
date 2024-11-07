@@ -69,15 +69,34 @@ const ProductInfo = ({ productInfo }) => {
     );
   }
 
+  const formatPrice = (price) => {
+    const priceStr = String(price);
+    const length = priceStr.length;
+
+    if (length === 4) {
+      // 4 digits: space after the first digit
+      return `${priceStr[0]} ${priceStr.slice(1)}`;
+    } else if (length === 5) {
+      // 5 digits: space after the second digit
+      return `${priceStr.slice(0, 2)} ${priceStr.slice(2)}`;
+    } else if (length === 6) {
+      // 6 digits: space after the third digit
+      return `${priceStr.slice(0, 3)} ${priceStr.slice(3)}`;
+    }
+    return priceStr; // Return as-is if length is different
+  };
+
   return (
     <div className="w-full flex flex-col gap-5">
       <h2 className="text-3xl md:text-4xl font-semibold">
         {productInfo.product_name}
       </h2>
-      <p className="text-xl font-semibold">{productInfo.price} сумов</p>
+      <p className="text-xl font-semibold">
+        {formatPrice(productInfo.price)} сумов
+      </p>
       <p className="text-base text-gray-600">
         <b>Описание: </b>
-        {productInfo.des}
+        {productInfo.description}
       </p>
 
       <div className="font-medium text-lg flex flex-col items-start gap-4">

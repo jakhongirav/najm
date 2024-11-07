@@ -34,7 +34,7 @@ const Product = (props) => {
   const formatPrice = (price) => {
     const priceStr = String(price);
     const length = priceStr.length;
-  
+
     if (length === 4) {
       // 4 digits: space after the first digit
       return `${priceStr[0]} ${priceStr.slice(1)}`;
@@ -78,7 +78,7 @@ const Product = (props) => {
                   {props.product_name}
                 </h2>
                 <p className="text-[#767676] text-[14px] font-bold mt-2">
-                {formatPrice(props.price)} сумов
+                  {formatPrice(props.price)} сумов
                 </p>
               </div>
               <Button
@@ -99,7 +99,7 @@ const Product = (props) => {
                           id: props.id,
                           images: props.images,
                           name: props.name,
-                          description: props.des,
+                          description: props.description,
                           price: props.price,
                           slug: props.slug,
                           inStock: props.inStock,
@@ -124,7 +124,7 @@ const Product = (props) => {
                           id: props.id,
                           images: props.images,
                           name: props.product_name,
-                          description: props.des,
+                          description: props.description,
                           price: props.price,
                           slug: props.slug,
                           inStock: props.inStock,

@@ -69,7 +69,7 @@ const NewArrivals = () => {
               product_name={product.name}
               price={product.price}
               badge={true}
-              des={product.description}
+              description={product.description}
               slug={product.slug}
               in_stock={product.in_stock}
               is_recommended={product.is_recommended}

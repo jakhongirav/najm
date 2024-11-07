@@ -16,7 +16,7 @@ function Items({ currentItems }) {
               images={item.images}
               product_name={item.name}
               price={item.price}
-              des={item.description}
+              description={item.description}
               in_stock={item.in_stock}
               is_recommended={item.is_recommended}
               slug={item.slug}
