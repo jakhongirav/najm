@@ -50,7 +50,11 @@ const Product = (props) => {
 
   return (
     <>
-      <Card className="w-full relative py-2 p-0" {...props}>
+      <Card
+        className="w-full relative py-2 p-0 hover:shadow-xl"
+        onClick={handleProductDetails}
+        {...props}
+      >
         {isLoading ? (
           <div className="container w-full mx-auto my-5 border-b-gray-300 flex flex-col space-y-3">
             <Skeleton className="h-80 w-full" />

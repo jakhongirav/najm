@@ -58,12 +58,17 @@ const ProductDetails = () => {
         <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-6 xl:grid-rows-1 gap-4 h-full -mt-5 xl:-mt-8 bg-white">
           <div className="h-full w-[60%] mx-auto md:col-span-2 xl:col-span-3 flex flex-col gap-1 justify-center items-center">
             <div className="">
-              {currentImage && (
+              {currentImage ? (
                 <img
                   className="w-auto max-h-80 sml:w-[400px] sml:h-[400px] object-contain"
                   src={currentImage.image}
                   alt="product"
                 />
+              ) : (
+                <div className="text-center">
+                  <Skeleton className="w-auto max-h-80 sml:w-[400px] sml:h-[400px]" />
+                  <p className="bg-yellow-600">Ничего не найдено!</p>
+                </div>
               )}
             </div>
             {images.length > 1 ? (
@@ -82,7 +87,9 @@ const ProductDetails = () => {
                     >
                       <div>
                         <Card
-                          className={`${image.id === currentImage.id && "border-primeColor"} h-[120px]`}
+                          className={`${
+                            image.id === currentImage.id && "border-primeColor"
+                          } h-[120px]`}
                         >
                           <CardContent className="w-full flex aspect-square items-center justify-center p-1">
                             <img
