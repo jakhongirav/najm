@@ -11,7 +11,7 @@ const Shop = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllProducts());
-  }, []);
+  }, [dispatch]);
 
   const [selectedConf, setSelectedConf] = useState("products");
   const confItem = async (item) => {

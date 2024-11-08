@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { RiHeart2Fill, RiShoppingCart2Fill, RiStarFill } from "react-icons/ri";
+import { RiShoppingCart2Fill, RiStarFill } from "react-icons/ri";
 import { MdSwitchAccount } from "react-icons/md";
 import { useSelector } from "react-redux";
 

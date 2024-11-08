@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import { resetCart } from "../../redux/orebiSlice";
-import { emptyCart } from "../../assets/images/index";
 import ItemCard from "./ItemCard";
+import { emptyCart } from "../../assets/images";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ const Cart = () => {
           </div>
           <div className="mt-5">
             {saved.map((item) => (
-              <div key={item._id}>
+              <div key={item.id}>
                 <ItemCard item={item} />
               </div>
             ))}

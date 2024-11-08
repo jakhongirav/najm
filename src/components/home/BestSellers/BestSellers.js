@@ -9,7 +9,7 @@ const BestSellers = () => {
 
   useEffect(() => {
     dispatch(getBestSellers());
-  }, []);
+  }, [dispatch]);
 
   const bestSellers = useSelector((state) => state.orebiReducer.bestSellers);
 

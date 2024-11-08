@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
-import { heroBg, heroBg1, heroBg2 } from "../../assets/images";
+import { heroBg, heroBg1 } from "../../assets/images";
 import Image from "../designLayouts/Image";
 
 const Banner = () => {

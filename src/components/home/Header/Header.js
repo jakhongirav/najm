@@ -5,7 +5,6 @@ import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { logo } from "../../../assets/images";
 import Image from "../../designLayouts/Image";
-import { navBarList } from "../../../constants";
 import Flex from "../../designLayouts/Flex";
 
 const Header = () => {
@@ -13,7 +12,29 @@ const Header = () => {
   // const [sidenav, setSidenav] = useState(false);
   // const [category, setCategory] = useState(false);
   // const [brand, setBrand] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const navBarList = [
+    {
+      id: 1001,
+      title: "Главная",
+      link: "/",
+    },
+    {
+      id: 1002,
+      title: "Покупки",
+      link: "/shop",
+    },
+    {
+      id: 1003,
+      title: "О нас",
+      link: "/about",
+    },
+    {
+      id: 1004,
+      title: "Контакты",
+      link: "contact",
+    },
+  ];
 
   const location = useLocation();
   useEffect(() => {
@@ -48,9 +69,9 @@ const Header = () => {
                 className="flex items-center w-auto z-50 p-0 gap-2"
               >
                 <>
-                  {navBarList.map(({ _id, title, link }) => (
+                  {navBarList.map(({ id, title, link }) => (
                     <NavLink
-                      key={_id}
+                      key={id}
                       className="flex font-normal hover:font-bold w-[145px] h-6 justify-center items-center px-12 text-base text-[#767676] hover:underline underline-offset-[4px] decoration-[1px] hover:text-[#262626] md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
                       to={link}
                       state={{ data: location.pathname.split("/")[1] }}

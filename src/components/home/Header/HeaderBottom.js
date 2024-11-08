@@ -1,11 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
-import { HiOutlineMenuAlt4 } from "react-icons/hi";
+// import { motion } from "framer-motion";
+// import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { FaSearch, FaUser, FaCaretDown, FaShoppingCart } from "react-icons/fa";
 import Flex from "../../designLayouts/Flex";
 import { Link, Route, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { paginationItems } from "../../../constants";
 import { getCategories } from "../../../redux/orebiSlice";
 
 const HeaderBottom = () => {
