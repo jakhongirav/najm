@@ -8,6 +8,8 @@ import { Skeleton } from "../../components/ui/skeleton";
 const SavedItem = ({ item }) => {
   const dispatch = useDispatch();
 
+  console.log(item);
+
   const formatPrice = (price) => {
     const priceStr = String(price);
     const length = priceStr.length;
@@ -46,8 +48,7 @@ const SavedItem = ({ item }) => {
             {item.name}
           </h1>
           <p>
-            <b className="text-primeColor">Цена:</b> {formatPrice(item.price)}{" "}
-            сумов
+            <b className="text-primeColor">Цена:</b> {formatPrice(item.price)} сумов
           </p>
         </div>
       </div>

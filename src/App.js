@@ -1,3 +1,4 @@
+import { lazy, Suspense, memo } from 'react';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -11,34 +12,39 @@ import FooterBottom from "./components/home/Footer/FooterBottom";
 import Header from "./components/home/Header/Header";
 import HeaderBottom from "./components/home/Header/HeaderBottom";
 import SpecialCase from "./components/SpecialCase/SpecialCase";
-import About from "./pages/About/About";
 import SignIn from "./pages/Account/SignIn";
 import SignUp from "./pages/Account/SignUp";
-import Cart from "./pages/Cart/Cart";
 import Contact from "./pages/Contact/Contact";
-import Home from "./pages/Home/Home";
 import Offer from "./pages/Offer/Offer";
 import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
-import Shop from "./pages/Shop/Shop";
 import { Toaster } from "./components/ui/toaster";
 import FooterNav from "./components/home/Footer/FooterNav";
 import Saved from "./pages/Saved/Saved";
 
-const Layout = () => {
+// Lazy load page components
+const Home = lazy(() => import("./pages/Home/Home"));
+const Shop = lazy(() => import("./pages/Shop/Shop"));
+const About = lazy(() => import("./pages/About/About"));
+const Cart = lazy(() => import("./pages/Cart/Cart"));
+
+const Layout = memo(() => {
   return (
     <div className="relative">
       <Header />
       <HeaderBottom />
       <SpecialCase />
       <ScrollRestoration />
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
       <FooterNav />
       <Footer />
       <FooterBottom />
     </div>
   );
-};
+});
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>

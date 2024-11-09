@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import Slider from "react-slick";
 import Heading from "../Products/Heading";
 import Product from "../Products/Product";
@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getNewArrivals } from "../../../redux/orebiSlice";
 
 const NewArrivals = () => {
-  const settings = {
+  const settings = useMemo(() => ({
     infinite: true,
     speed: 500,
     slidesToShow: 4,
@@ -41,37 +41,34 @@ const NewArrivals = () => {
         },
       },
     ],
-  };
+  }), []);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getNewArrivals());
-  }, []);
-
+  }, [dispatch]);
   const newArrivals = useSelector((state) => state.orebiReducer.newArrivals);
 
   return (
     <div className="w-full pb-16">
       <Heading heading="Новинки" />
-      <Slider {...settings}>
-        {newArrivals.map((product) => (
-          <div className="px-2" key={product.id}>
-            <Product
-              id={product.id}
-              images={product.images}
-              product_name={product.name}
-              price={product.price}
-              badge={true}
-              description={product.description}
-              slug={product.slug}
-              in_stock={product.in_stock}
-              is_recommended={product.is_recommended}
-              category={product.category}
-            />
-          </div>
-        ))}
-      </Slider>
+      {newArrivals.length > 0 ? (
+        <Slider {...settings}>
+          {newArrivals.map((product) => (
+            <div className="px-2" key={product.id}>
+              <Product
+                {...product}
+                in_stock={String(product.in_stock)}
+                is_recommended={String(product.is_recommended)}
+                product_name={product.name}
+              />
+            </div>
+          ))}
+        </Slider>
+      ) : (
+        <p>Нет новых поступлений</p>
+      )}
     </div>
   );
 };

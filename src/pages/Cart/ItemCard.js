@@ -8,6 +8,14 @@ import {
   increaseQuantity,
 } from "../../redux/orebiSlice";
 
+const formatPrice = (price) => {
+  // Convert to string and handle potential decimals
+  const priceStr = Math.round(price).toString();
+  
+  // Split into groups of 3 from the right
+  return priceStr.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+};
+
 const ItemCard = ({ item }) => {
   const dispatch = useDispatch();
 
@@ -33,7 +41,7 @@ const ItemCard = ({ item }) => {
       </div>
       <div className="col-span-5 mdl:col-span-3 flex items-center justify-between py-4 mdl:py-0 px-4 mdl:px-0 gap-6 mdl:gap-0">
         <div className="flex w-1/3 items-center text-lg font-semibold">
-          {item.price} сумов
+          {formatPrice(item.price)} сумов
         </div>
         <div className="w-1/3 flex items-center gap-6 text-lg">
           <span
@@ -51,7 +59,7 @@ const ItemCard = ({ item }) => {
           </span>
         </div>
         <div className="w-1/3 flex items-center font-titleFont font-bold text-lg">
-          <p>{item.quantity * item.price} сумов</p>
+          <p>{formatPrice(item.quantity * item.price)} сумов</p>
         </div>
       </div>
     </div>

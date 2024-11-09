@@ -14,21 +14,29 @@ const Cart = () => {
   const [shippingCharge, setShippingCharge] = useState("");
   useEffect(() => {
     let price = 0;
-    saved.map((item) => {
+    saved.forEach((item) => {
       price += item.price * item.quantity;
-      return price;
     });
     setTotalAmt(price);
   }, [saved]);
   useEffect(() => {
-    if (totalAmt <= 200) {
-      setShippingCharge(30);
-    } else if (totalAmt <= 400) {
-      setShippingCharge(25);
-    } else if (totalAmt > 401) {
-      setShippingCharge(20);
+    if (totalAmt <= 200000) {
+      setShippingCharge(30000);
+    } else if (totalAmt <= 400000) {
+      setShippingCharge(25000);
+    } else if (totalAmt > 400000) {
+      setShippingCharge(20000);
     }
   }, [totalAmt]);
+
+  const formatPrice = (price) => {
+    // Convert to string and handle potential decimals
+    const priceStr = Math.round(price).toString();
+    
+    // Split into groups of 3 from the right
+    return priceStr.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  };
+
   return (
     <div className="container mx-auto">
       <Breadcrumbs title="Корзина" />
@@ -62,19 +70,19 @@ const Cart = () => {
                 <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
                   Цена
                   <span className="font-semibold tracking-wide font-titleFont">
-                    {totalAmt} сумов
+                    {formatPrice(totalAmt)} сумов
                   </span>
                 </p>
                 <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
                   Стоимость доставки
                   <span className="font-semibold tracking-wide font-titleFont">
-                    {shippingCharge} сумов
+                    {formatPrice(shippingCharge)} сумов
                   </span>
                 </p>
                 <p className="flex items-center justify-between border-[1px] border-gray-400 py-1.5 text-lg px-4 font-medium">
                   Итоговая цена
                   <span className="font-bold tracking-wide text-lg font-titleFont">
-                    {totalAmt + shippingCharge} сумов
+                    {formatPrice(totalAmt + shippingCharge)} сумов
                   </span>
                 </p>
               </div>
