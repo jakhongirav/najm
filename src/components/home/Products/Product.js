@@ -113,7 +113,7 @@ const Product = (props) => {
                         })
                       );
                     }}
-                    className="gap-2 hover:cursor-pointer duration-300 p-2 rounded-full border border-gray-600 hover:border-primeColor"
+                    className="gap-2 hover:cursor-pointer duration-300 p-2 rounded-full border border-black-600 hover:border-primeColor hover:bg-primeColor"
                   >
                     <Image
                       imgSrc={shoppingCart}
@@ -138,7 +138,7 @@ const Product = (props) => {
                         })
                       );
                     }}
-                    className="gap-2 hover:cursor-pointer duration-300 p-2 rounded-full border border-gray-600 hover:border-primeColor"
+                    className="gap-2 hover:cursor-pointer duration-300 p-2 rounded-full border border-black-600 hover:border-primeColor hover:bg-primeColor"
                   >
                     <Image
                       imgSrc={star}
