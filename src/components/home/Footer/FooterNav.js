@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import Image from "../../designLayouts/Image";
@@ -21,21 +21,44 @@ import useQuery from "../../../hooks/useQuery";
 export default function FooterNav() {
   const categories = useSelector((state) => state.orebiReducer.categories);
   const selectedCategoryId = useQuery("category"); // Getting the selected category from query params
-  const isCategorySelected = (id) => selectedCategoryId === id.toString(); // Compare category IDs as strings
+  const isCategorySelected = (id) => selectedCategoryId === id.toString();
+  // Compare category IDs as strings
+
+  const location = useLocation(); // Get the current location
 
   return (
     <div className="w-[99%] md:hidden mx-auto fixed bottom-0 right-0 left-0 bg-white rounded-t-lg z-50">
       <div className="flex items-center justify-around p-3">
-        <Link to="/">
+        <Link
+          to="/"
+          className={`${
+            location.pathname === "/" ? "border-b-2 border-primeColor pb-1" : ""
+          }`}
+        >
           <Image imgSrc={homeIcon} className="w-[30px] h-[30px]" />
         </Link>
-        <Link to="/shop">
+        <Link
+          to="/shop"
+          className={`${
+            location.pathname === "/shop" ? "border-b-2 border-primeColor pb-1" : ""
+          }`}
+        >
           <Image imgSrc={shoppingCart} className="w-[30px] h-[30px]" />
         </Link>
-        <Link to="/saved">
+        <Link
+          to="/saved"
+          className={`${
+            location.pathname === "/saved" ? "border-b-2 border-primeColor pb-1" : ""
+          }`}
+        >
           <Image imgSrc={star} className="w-[30px] h-[30px]" />
         </Link>
-        <Link to="/signin">
+        <Link
+          to="/signin"
+          className={`${
+            location.pathname === "/signin" ? "border-b-2 border-primeColor pb-1" : ""
+          }`}
+        >
           <Image imgSrc={profileCircle} className="w-[30px] h-[30px]" />
         </Link>
 

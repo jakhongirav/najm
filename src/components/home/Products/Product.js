@@ -86,7 +86,6 @@ const Product = (props) => {
                 </p>
               </div>
               <Button
-                onClick={handleProductDetails}
                 className={`${buttonVariants({
                   variant: "outline",
                   size: "default",

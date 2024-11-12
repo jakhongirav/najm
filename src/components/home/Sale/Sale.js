@@ -8,22 +8,22 @@ import { buttonVariants } from "../../ui/button";
 const CARD_DATA = [
   {
     image: cardbg,
-    title: "Карандаши",
-    category: "9",
-    className: "md:col-span-1 row-span-1 md:row-auto"
+    title: "Подарочные боксы",
+    category: "6",
+    className: "md:col-span-1 row-span-1 md:row-auto",
   },
   {
     image: cardbg2,
-    title: "Тетради",
-    category: "6",
-    className: ""
+    title: "Тетради и Блокноты",
+    category: "2",
+    className: "",
   },
   {
     image: cardbg3,
-    title: "Блокноты",
-    category: "2",
-    className: ""
-  }
+    title: "Ручки и Карандаши",
+    category: "5",
+    className: "",
+  },
 ];
 
 const SaleCard = ({ image, title, category, className }) => (
