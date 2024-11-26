@@ -12,9 +12,11 @@ import cardbg from "./cardBack.jpg";
 // import cardbg1 from "./cardBack1.jpg";
 import cardbg2 from "./cardBack2.jpg";
 import cardbg3 from "./cardBack3.jpg";
+import hamburgerIcon from "./hamburger-menu.png";
 
 // ============== Products End here ======================
 import emptyCart from "../images/emptyCart.png";
+
 export {
   logo,
   heroBg,
@@ -25,6 +27,7 @@ export {
   wallet,
   profileCircle,
   shoppingCart,
+  hamburgerIcon,
   // ===================== Products start here ============
   cardbg,
   // cardbg1,

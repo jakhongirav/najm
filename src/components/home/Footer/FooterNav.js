@@ -7,6 +7,7 @@ import {
   star,
   profileCircle,
   shoppingCart,
+  hamburgerIcon,
 } from "../../../assets/images";
 import {
   Sheet,
@@ -17,6 +18,7 @@ import {
   SheetTrigger,
 } from "../../ui/dialog";
 import useQuery from "../../../hooks/useQuery";
+import { Button } from "../../ui/button";
 
 export default function FooterNav() {
   const categories = useSelector((state) => state.orebiReducer.categories);
@@ -35,37 +37,46 @@ export default function FooterNav() {
             location.pathname === "/" ? "border-b-2 border-primeColor pb-1" : ""
           }`}
         >
-          <Image imgSrc={homeIcon} className="w-[30px] h-[30px]" />
+          <Image imgSrc={homeIcon} className="w-[23px] h-[23px]" />
         </Link>
         <Link
           to="/shop"
           className={`${
-            location.pathname === "/shop" ? "border-b-2 border-primeColor pb-1" : ""
+            location.pathname === "/shop"
+              ? "border-b-2 border-primeColor pb-1"
+              : ""
           }`}
         >
-          <Image imgSrc={shoppingCart} className="w-[30px] h-[30px]" />
+          <Image imgSrc={shoppingCart} className="w-[23px] h-[23px]" />
         </Link>
         <Link
           to="/saved"
           className={`${
-            location.pathname === "/saved" ? "border-b-2 border-primeColor pb-1" : ""
+            location.pathname === "/saved"
+              ? "border-b-2 border-primeColor pb-1"
+              : ""
           }`}
         >
-          <Image imgSrc={star} className="w-[30px] h-[30px]" />
+          <Image imgSrc={star} className="w-[23px] h-[23px]" />
         </Link>
         <Link
           to="/signin"
           className={`${
-            location.pathname === "/signin" ? "border-b-2 border-primeColor pb-1" : ""
+            location.pathname === "/signin"
+              ? "border-b-2 border-primeColor pb-1"
+              : ""
           }`}
         >
-          <Image imgSrc={profileCircle} className="w-[30px] h-[30px]" />
+          <Image imgSrc={profileCircle} className="w-[23px] h-[23px]" />
         </Link>
 
         {/* Category Menu */}
         <Sheet>
           <SheetTrigger asChild>
-            <HiOutlineMenuAlt4 className="w-[30px] h-[30px]" />
+            <p>
+              <Image imgSrc={hamburgerIcon} className="w-[23px] h-[23px]" />
+            </p>
+            {/* <HiOutlineMenuAlt4 className="w-[30px] h-[30px]" /> */}
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>

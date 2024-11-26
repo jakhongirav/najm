@@ -52,7 +52,7 @@ const SaleCard = ({ image, title, category, className }) => (
 
 const Sale = () => {
   return (
-    <div className="my-20 w-full mx-auto grid grid-rows-3 md:grid-rows-1 md:grid-cols-2 gap-4">
+    <div className="my-12 w-full mx-auto grid grid-rows-3 md:grid-rows-1 md:grid-cols-2 gap-4">
       <SaleCard {...CARD_DATA[0]} />
       <div className="md:col-span-1 row-span-2 md:row-auto flex flex-col gap-4 md:gap-2">
         <SaleCard {...CARD_DATA[1]} />
