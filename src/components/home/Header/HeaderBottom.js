@@ -15,6 +15,7 @@ const HeaderBottom = () => {
   const [showUser, setShowUser] = useState(false);
   const navigate = useNavigate();
   const ref = useRef();
+  const searchInputRef = useRef(null);
 
   const dispatch = useDispatch();
 
@@ -72,6 +73,24 @@ const HeaderBottom = () => {
     return priceStr; // Return as-is if length is different
   };
 
+  const focusSearchInput = () => {
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  };
+
+  useEffect(() => {
+    const handleFocusSearchInput = () => {
+      focusSearchInput(); // Call the focus method
+    };
+
+    window.addEventListener('focusSearchInput', handleFocusSearchInput);
+
+    return () => {
+      window.removeEventListener('focusSearchInput', handleFocusSearchInput);
+    };
+  }, []); // Empty dependency array to run only once
+
   return (
     <div className="w-full bg-[#F5F5F3] relative">
       <div className="container mx-auto">
@@ -79,6 +98,7 @@ const HeaderBottom = () => {
           {/* Search bar */}
           <div className="relative w-full mx-auto lg:w-[600px] h-[50px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-6 rounded-xl">
             <input
+              ref={searchInputRef}
               className="flex-1 h-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
               type="text"
               onChange={handleSearch}

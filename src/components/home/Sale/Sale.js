@@ -24,6 +24,12 @@ const CARD_DATA = [
     category: "5",
     className: "",
   },
+  {
+    image: cardbg3,
+    title: "Новинки",
+    category: "5",
+    className: "",
+  },
 ];
 
 const SaleCard = ({ image, title, category, className }) => (
@@ -52,12 +58,10 @@ const SaleCard = ({ image, title, category, className }) => (
 
 const Sale = () => {
   return (
-    <div className="my-12 w-full mx-auto grid grid-rows-3 md:grid-rows-1 md:grid-cols-2 gap-4">
-      <SaleCard {...CARD_DATA[0]} />
-      <div className="md:col-span-1 row-span-2 md:row-auto flex flex-col gap-4 md:gap-2">
-        <SaleCard {...CARD_DATA[1]} />
-        <SaleCard {...CARD_DATA[2]} />
-      </div>
+    <div className="my-5 w-full mx-auto grid grid-cols-1 md:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4">
+      {CARD_DATA.map((card, index) => (
+        <SaleCard key={index} {...card} />
+      ))}
     </div>
   );
 };

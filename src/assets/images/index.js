@@ -7,6 +7,7 @@ import star from "./star.png";
 import wallet from "./wallet.png";
 import profileCircle from "./profile-user.png";
 import shoppingCart from "./shopping-cart.png";
+import search from "./search.png";
 // ============== Products Start here ====================
 import cardbg from "./cardBack.jpg";
 // import cardbg1 from "./cardBack1.jpg";
@@ -28,6 +29,7 @@ export {
   profileCircle,
   shoppingCart,
   hamburgerIcon,
+  search,
   // ===================== Products start here ============
   cardbg,
   // cardbg1,

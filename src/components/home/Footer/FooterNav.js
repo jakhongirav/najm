@@ -8,6 +8,7 @@ import {
   profileCircle,
   shoppingCart,
   hamburgerIcon,
+  search,
 } from "../../../assets/images";
 import {
   Sheet,
@@ -27,6 +28,11 @@ export default function FooterNav() {
   // Compare category IDs as strings
 
   const location = useLocation(); // Get the current location
+
+  const handleSearchClick = () => {
+    const event = new CustomEvent('focusSearchInput');
+    window.dispatchEvent(event); // Dispatch a custom event
+  };
 
   return (
     <div className="w-[99%] md:hidden mx-auto fixed bottom-0 right-0 left-0 bg-white rounded-t-lg z-50">
@@ -68,6 +74,17 @@ export default function FooterNav() {
           }`}
         >
           <Image imgSrc={profileCircle} className="w-[23px] h-[23px]" />
+        </Link>
+        <Link
+          to=""
+          onClick={handleSearchClick}
+          className={`${
+            location.pathname === "/signin"
+              ? "border-b-2 border-primeColor pb-1"
+              : ""
+          }`}
+        >
+          <Image imgSrc={search} className="w-[23px] h-[23px]" />
         </Link>
 
         {/* Category Menu */}
